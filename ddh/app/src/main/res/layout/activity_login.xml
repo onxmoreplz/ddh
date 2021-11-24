@@ -29,12 +29,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="12dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="kakao"
-                android:textStyle="bold"
-                android:textSize="32dp"
-                android:layout_marginBottom="16dp"/>
+                android:textSize="32dp" />
 
             <EditText
                 android:id="@+id/edt_id"
@@ -49,23 +48,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginBottom="24dp"
                 android:hint="비밀번호"/>
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:text="로그인 상태유지"
-                android:gravity="center_vertical"
-                android:layout_weight="0.3"
-                android:layout_marginBottom="20dp"/>
+                android:layout_weight="0.4"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="로그인 상태유지 "
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/check"/>
+
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/button_round"
+                android:layout_height="48dp"
+                android:background="@drawable/button_round_login"
                 android:text="로그인"
-                android:textSize="20dp" />
+                android:textSize="16dp" />
             
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,10 +112,10 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/button_round"
+                android:layout_height="48dp"
+                android:background="@drawable/button_round_login"
                android:text="회원가입"
-                android:textSize="20dp"/>
+                android:textSize="16dp"/>
 
         </LinearLayout>
 
