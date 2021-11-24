@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setBtn() {
         findViewById<Button>(R.id.btn_sign_up).setOnClickListener {
-        val intent = Intent(this, SignUpActivity::class.java)
+        val intent = Intent(this, SignUpEmailActivity::class.java)
         startActivity(intent)
         }
     }
