@@ -2,14 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ddh">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/confirmed"
         android:label="@string/app_name"
         android:roundIcon="@drawable/confirmed"
         android:supportsRtl="true">
-        <activity android:name=".login.SignUpPasswordActivity"></activity>
-        <activity android:name=".login.SignUpEmailActivity" />
+        <activity android:name=".signup.SignUpEmailActivity" />
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/SplashTheme">
