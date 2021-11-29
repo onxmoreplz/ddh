@@ -8,6 +8,11 @@ class SignUpUserData {
         val code: Int? = null
     )
 
+    data class LoginResponse(
+        val code: Int? = null,
+        val data: User? = null
+    )
+
     data class User(
         val email: String? = null,
         val password: String? = null,

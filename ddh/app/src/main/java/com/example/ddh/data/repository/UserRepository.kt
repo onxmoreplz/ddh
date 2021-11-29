@@ -9,4 +9,11 @@ interface UserRepository {
         success: (SignUpUserData.SignUpUserResponse) -> Unit,
         fail: (Throwable) -> Unit
     )
+
+    fun getLogin(
+        email: String,
+        password: String,
+        success: (SignUpUserData.LoginResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    )
 }

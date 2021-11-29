@@ -13,4 +13,14 @@ class UserRepositoryImpl : UserRepository {
     ) {
         userRemoteDataSource.postSignUpRemote(userInfo, success, fail)
     }
+
+    override fun getLogin(
+        email: String,
+        password: String,
+        success: (SignUpUserData.LoginResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        userRemoteDataSource.getUserLoginRemote(email, password, success, fail)
+    }
+
 }

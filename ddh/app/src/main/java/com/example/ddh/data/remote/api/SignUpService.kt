@@ -12,5 +12,9 @@ interface SignUpService {
         @FieldMap params: HashMap<String, String>
     ): Call<SignUpUserData.SignUpUserResponse>
 
-
+    @GET("user/login")
+    fun getLoginUser(
+        @Query("email") email: String,
+        @Query("password") password: String
+    ): Call<SignUpUserData.LoginResponse>
 }
