@@ -4,19 +4,23 @@ import java.util.*
 
 class SignUpUserData {
     data class SignUpUserResponse(
-        val items: List<User>,
-        val lastBuildDate: String,
-        val start: Int,
-        val total: Int,
+        val data: PostResultUser? = null,
+        val code: Int? = null
     )
 
     data class User(
-        val email: String,
-        val password: String,
-        val name: String,
-        val phone: String,
-        val birthday: Date, // Date형
-        val gender: String,
-        val personalInformation: String
+        val email: String? = null,
+        val password: String? = null,
+        val name: String? = null,
+        val phone: String? = null,
+        val birthday: Date? = null, // Date형
+        val gender: String? = null,
+        val personalInformation: String? = null
+    )
+
+    data class PostResultUser (
+        val userId: String? = null,
+        val name: String? = null,
+        val message: String? = null
     )
 }
