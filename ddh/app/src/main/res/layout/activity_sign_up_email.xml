@@ -1,147 +1,317 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.ddh.signup.SignUpViewModel" />
+    </data>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".login.LoginActivity">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.5">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="32dp"
-            android:layout_weight="2.2"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="DDH"
-                android:textSize="28dp" />
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="24dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/layout_border"
-                android:orientation="vertical"
-                android:layout_marginBottom="12dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
                     android:gravity="center_vertical"
-                    android:text="DDH가입을 위해\n이메일 인증을 진행해주세요."
-                    android:textSize="18dp" />
+                    android:text="아이디(이메일)"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="6dp">
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/edt_sign_up_email"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:backgroundTint="#DDDDDD"
                         android:gravity="center_vertical"
-                        android:textSize="10dp"
-                        tools:hint="이메일을 입력" />
+                        android:hint="이메일 주소"
+                        android:textSize="13dp" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_verify_email"
-                        android:layout_width="66dp"
-                        android:layout_height="24dp"
+                        android:id="@+id/btn_request_code"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="3.5dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
                         android:background="@drawable/button_round_verify_email"
                         android:gravity="center"
-                        android:layout_marginTop="4dp"
-                        android:layout_alignParentRight="true"
+                        android:paddingVertical="2dp"
                         android:text="인증요청"
-                        android:textSize="13dp" />
-                </RelativeLayout>
+                        android:textSize="11dp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll__verify_code_from_email"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="4dp">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
 
                         <EditText
                             android:id="@+id/edt_sign_up_verify_email"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:textStyle="bold"/>
+                            android:backgroundTint="#DDDDDD"
+                            android:hint="인증번호(6자리) 입력"
+                            android:textSize="13dp" />
 
                         <TextView
-                            android:id="@+id/tv_stop_watch"
-                            android:layout_width="0dp"
+                            android:id="@+id/tv_timer"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.3"
-                            android:text="4:39"
-                            android:textSize="14dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="7dp"
+                            android:gravity="center"
+                            android:letterSpacing="0.1"
+                            android:text="4:30"
                             android:textColor="#DD0000"
-                            android:gravity="center_vertical"/>
+                            android:textSize="11dp" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/tv_cannot_get_code"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:gravity="center_vertical"
-                        android:text="인증번호를 받지 못하셨나요?"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_verify_code"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="3.5dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/button_round_verify_email"
+                        android:gravity="center"
+                        android:paddingVertical="2dp"
+                        android:text="확인"
+                        android:textSize="11dp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
                 </LinearLayout>
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="22dp"
+                    android:gravity="center_vertical"
+                    android:text="비밀번호"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_sign_up_first_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:gravity="center_vertical"
+                    android:hint="비밀번호"
+                    android:inputType="textPassword"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical"
+                    android:text="비밀번호 확인"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_sign_up_second_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:gravity="center_vertical"
+                    android:hint="비밀번호 확인"
+                    android:inputType="textPassword"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:text="이름"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_sign_up_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:gravity="center_vertical"
+                    android:hint="실명을 입력하세요."
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical"
+                    android:text="휴대폰번호"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_sign_up_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:gravity="center_vertical"
+                    android:hint="'-'구분없이 입력"
+                    android:inputType="phone"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:text="생년월일"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_sign_up_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#DDDDDD"
+                    android:gravity="center_vertical"
+                    android:hint="8자리 입력(예시 : 19950228)"
+                    android:inputType="date"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:gravity="center_vertical"
+                    android:text="성별"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="18dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rg_men"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="32dp"
+                        android:text="남자"
+                        android:textSize="12dp"
+                        android:theme="@style/CustomRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/rg_women"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="여자"
+                        android:textSize="12dp"
+                        android:theme="@style/CustomRadioButton" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/layout_border"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/cb_procecure_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="32dp"
+                        android:text="모두 동의합니다."
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:theme="@style/CustomRadioButton" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="#DDDDDD" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_check_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_check_box" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_sign_up_email_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_round_sign_up"
+                    android:gravity="center"
+                    android:onClick="@{()->vm.clickBtnSignUp()}"
+                    android:text="DDH 시작하기"
+                    android:textSize="16dp" />
+
             </LinearLayout>
 
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_sign_up_email_next"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/button_round_login"
-                android:gravity="center"
-                android:text="다음"
-                android:textSize="16dp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            android:layout_weight="0.5">
-
-        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
