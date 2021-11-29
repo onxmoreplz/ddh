@@ -19,4 +19,10 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+    <!-- 라디오버튼 테마 -->
+    <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#666666</item>
+        <item name="colorControlNormal">#DDDDDD</item>
+    </style>
+
 </resources>

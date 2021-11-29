@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">ddh</string>
     <string name="sign_up_didnt_get_verify_code">인증번호를 받지 못 하셨나요?<u>underline</u>.</string>
-    <string name="sign_up_password_rule">- 비밀번호 8~32자리의 영문 대소문자, 숫자, 특수문자를 조합하여 설정해 주세요.\n- 안전한 계정을 사용을 위해 비밀번호는 주기적으로 변경해주세요.</string>
 </resources>
