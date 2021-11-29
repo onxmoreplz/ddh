@@ -1,137 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.ddh.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:context=".login.LoginActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.7">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="32dp"
-            android:layout_weight="2.2"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="12dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="kakao"
-                android:textSize="32dp" />
+                android:layout_gravity="center"
+                android:layout_weight="0.7">
 
-            <EditText
-                android:id="@+id/edt_id"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:hint="카카오계정(이메일 또는 전화번호)"
-                android:backgroundTint="#DDDDDD"
-                android:textSize="18dp"/>
-
-            <EditText
-                android:id="@+id/edt_pw"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:hint="비밀번호"
-                android:backgroundTint="#DDDDDD"
-                android:textSize="18dp"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/check"
-                    android:layout_marginRight="4dp"/>
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="32dp"
+                android:layout_weight="2.2"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="로그인 상태유지 "
-                    android:textSize="14dp" />
+                    android:text="kakao"
+                    android:textSize="32dp" />
+
+                <EditText
+                    android:id="@+id/edt_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#DDDDDD"
+                    android:text="@{vm.email}"
+                    android:hint="카카오계정(이메일 또는 전화번호)"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/edt_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#DDDDDD"
+                    android:text="@{vm.password}"
+                    android:hint="비밀번호"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="0.4"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="4dp"
+                        android:src="@drawable/check" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="로그인 상태유지 "
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/button_round_login"
+                    android:text="로그인"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginVertical="16dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="4px"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="#DDDDDD" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="또는" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="4px"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="#DDDDDD" />
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/button_round_login"
+                    android:text="회원가입"
+                    android:textSize="16dp" />
 
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/button_round_login"
-                android:text="로그인"
-                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:orientation="horizontal"
-                android:layout_marginVertical="16dp">
-                <View
-                    android:layout_gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_height="4px"
-                    android:background="#DDDDDD"
-                    android:layout_weight="1"/>
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="또는"
-                    android:gravity="center"
-                    android:layout_weight="0.3"/>
-
-                <View
-                    android:layout_gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_height="4px"
-                    android:background="#DDDDDD"
-                    android:layout_weight="1"/>
             </LinearLayout>
 
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/button_round_login"
-               android:text="회원가입"
-                android:textSize="16dp"/>
-
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_marginTop="4dp">
 
-        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
