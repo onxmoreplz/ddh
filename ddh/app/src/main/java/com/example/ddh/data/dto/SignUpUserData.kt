@@ -10,7 +10,7 @@ class SignUpUserData {
 
     data class LoginResponse(
         val code: Int? = null,
-        val data: User? = null
+        val data: LoginData? = null
     )
 
     data class User(
@@ -27,5 +27,13 @@ class SignUpUserData {
         val userId: String? = null,
         val name: String? = null,
         val message: String? = null
+    )
+
+    data class LoginData (
+        val message: String? = null,
+        val userId: String? = null,
+        val name: String? = null,
+        val accessToken: String? = null
+
     )
 }
