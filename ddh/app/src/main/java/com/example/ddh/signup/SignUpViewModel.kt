@@ -8,7 +8,6 @@ class SignUpViewModel(
     private val userRepository: UserRepositoryImpl
 ) {
     val userInfoHashMap = HashMap<String, String>()
-    var signUpResultUser = 
     var signUpResultUsername: String? = ""
     var signUpResultMessage: String? = ""
 

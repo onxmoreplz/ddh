@@ -19,8 +19,8 @@ class SignUpEmailActivity : Activity() {
 
     private lateinit var dataBinding: ActivitySignUpEmailBinding
 
-    private val UserRepository = UserRepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
-    private val signUpViewmodel = SignUpViewModel(UserRepository)
+    private val userRepository = UserRepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
+    private val signUpViewmodel = SignUpViewModel(userRepository)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
