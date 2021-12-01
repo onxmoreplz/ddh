@@ -1,18 +1,26 @@
 package com.example.ddh.signup
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import androidx.core.content.ContextCompat
+import androidx.databinding.Bindable
+import androidx.databinding.Observable
 import androidx.databinding.ObservableField
+import com.example.ddh.R
 import com.example.ddh.data.repository.UserRepositoryImpl
+import java.util.regex.Pattern
 
 class SignUpViewModel(
     private val userRepository: UserRepositoryImpl
 ) {
     val userInfoHashMap = HashMap<String, String>()
     var signUpResultUsername: String? = ""
-    var signUpResultMessage: String? = ""
 
     val startSignUpCompleteActivity = ObservableField<Unit>()
     val failToPostUserInfo = ObservableField<Unit>()
+
+    val etEmail: String = ""
 
     //    fun postSignUpUserInfo(userInfoMainAcitivity: HashMap<String, String>) {
     fun postSignUpUserInfo() {
@@ -46,9 +54,16 @@ class SignUpViewModel(
 
     }
 
+    fun requestVerifyingCodeBtn() {
 
-    fun clickBtnSignUp() {
+    }
+
+    fun signUpBtnClick() {
+        checkAllEditTextValue()
         postSignUpUserInfo()
+    }
 
+    private fun checkAllEditTextValue() {
+        
     }
 }
