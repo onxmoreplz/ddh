@@ -7,7 +7,7 @@ import com.example.ddh.data.remote.api.SignUpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
+import kotlin.collections.HashMap
 
 class UserRemoteDataSource {
 
@@ -47,6 +47,24 @@ class UserRemoteDataSource {
                 }
             }
             override fun onFailure(call: Call<SignUpUserData.LoginResponse>, t: Throwable) {
+                fail(t)
+            }
+        })
+    }
+
+    fun postVerifyingCode(
+        verifyingHashMap: HashMap<String, String>,
+        success: (SignUpUserData.VerifyingResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        val call = SignUpClient.service.postVerifyEmail(verifyingHashMap)
+        call.enqueue(object : Callback<SignUpUserData.VerifyingResponse> {
+            override fun onResponse(call: Call<SignUpUserData.VerifyingResponse>, response: Response<SignUpUserData.VerifyingResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { success(it) }
+                }
+            }
+            override fun onFailure(call: Call<SignUpUserData.VerifyingResponse>, t: Throwable) {
                 fail(t)
             }
         })

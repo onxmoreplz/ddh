@@ -22,4 +22,12 @@ class UserRepositoryImpl : UserRepository {
         userRemoteDataSource.postUserLoginRemote(loginHashMap, success, fail)
     }
 
+    override fun postVerfyEmail(
+        verifyHashmap: HashMap<String, String>,
+        success: (SignUpUserData.VerifyingResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        userRemoteDataSource.postVerifyingCode(verifyHashmap, success, fail)
+    }
+
 }

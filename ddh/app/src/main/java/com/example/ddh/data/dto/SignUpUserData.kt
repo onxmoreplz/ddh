@@ -13,6 +13,17 @@ class SignUpUserData {
         val data: LoginData? = null
     )
 
+    data class VerifyingResponse(
+        val code: Int? = null,
+        val data: VerifyData? = null
+    )
+
+    data class VerifyData(
+        val email: String? = null,
+        val message: String? = null,
+        val code: String? = null
+    )
+
     data class User(
         val email: String? = null,
         val password: String? = null,

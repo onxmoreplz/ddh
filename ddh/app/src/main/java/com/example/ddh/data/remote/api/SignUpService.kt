@@ -17,4 +17,10 @@ interface SignUpService {
     fun postLoginUser(
         @FieldMap params: HashMap<String, String>
     ): Call<SignUpUserData.LoginResponse>
+
+    @FormUrlEncoded
+    @POST("user/emailCheck")
+    fun postVerifyEmail(
+        @FieldMap params: HashMap<String, String>
+    ): Call<SignUpUserData.VerifyingResponse>
 }
