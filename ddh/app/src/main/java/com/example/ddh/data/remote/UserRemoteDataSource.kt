@@ -62,6 +62,8 @@ class UserRemoteDataSource {
             override fun onResponse(call: Call<SignUpUserData.VerifyingResponse>, response: Response<SignUpUserData.VerifyingResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.let { success(it) }
+                } else {
+                    Log.d("UserRemoteDataSource", "Something goes wrong : ${response.errorBody()}")
                 }
             }
             override fun onFailure(call: Call<SignUpUserData.VerifyingResponse>, t: Throwable) {
