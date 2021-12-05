@@ -54,16 +54,13 @@ class SignUpViewModel(
 
     }
 
-    fun requestVerifyingCodeBtn() {
-
-    }
 
     fun signUpBtnClick() {
         checkAllEditTextValue()
-        postSignUpUserInfo()
+        //postSignUpUserInfo()
     }
 
     private fun checkAllEditTextValue() {
-        
+
     }
 }
