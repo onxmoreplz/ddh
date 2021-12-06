@@ -7,15 +7,25 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/confirmed"
+        android:layout_marginBottom="20dp"/>
+
     <TextView
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/btn_back_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_round_sign_up_enabled"
+        android:text="로그인 화면으로 이동"/>
 
 
 </LinearLayout>

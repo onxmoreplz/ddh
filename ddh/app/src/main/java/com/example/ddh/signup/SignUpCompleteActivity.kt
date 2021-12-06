@@ -18,7 +18,7 @@ class SignUpCompleteActivity : Activity() {
         val intent = intent
         val userName = intent.getStringExtra("username")
 
-        findViewById<TextView>(R.id.tv_user_name).text = "$userName 님 \nDDH의 회원이 되신 것을\n축하드립니다."
+        findViewById<TextView>(R.id.tv_user_name).text = "$userName 님 \nDDH의 회원이 되신 것을\n진심으로 환영합니다."
         findViewById<Button>(R.id.btn_back_login).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
