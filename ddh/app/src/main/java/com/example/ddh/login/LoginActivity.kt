@@ -38,7 +38,6 @@ class LoginActivity : Activity() {
         databinding.vm = loginViewmodel
 
 //        setObserveViewModelEvent()
-        setEditTextEmail()
         setBtn()
     }
 
@@ -63,16 +62,6 @@ class LoginActivity : Activity() {
             }
         })
     }*/
-
-    private fun setEditTextEmail() {
-        databinding.etEmail.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun afterTextChanged(s: Editable?) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                checkEmail()
-            }
-        })
-    }
 
 
     private fun setBtn() {
@@ -116,20 +105,8 @@ class LoginActivity : Activity() {
                 }
             },
             fail = {
-                Log.e("postUserLogin", "Fail to Login")
+                Log.e("postUserLogin", "Fail to Login :")
             }
         )
-    }
-
-    private fun checkEmail() {
-        val emailRegEx = "^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\$"
-        Log.d("Databinding.etEmail", databinding.etEmail.text.toString().trim())
-        if (Pattern.matches(emailRegEx, databinding.etEmail.text.toString().trim())) {
-            databinding.etEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextGreen)
-            isEmailValid = true
-        } else {
-            databinding.etEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
-            isEmailValid = false
-        }
     }
 }
