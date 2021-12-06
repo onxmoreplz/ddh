@@ -11,4 +11,5 @@
     <color name="colorEditTextGreen">#7FC147</color>
     <color name="colorEditTextGrey">#DDDDDD</color>
     <color name="colorEditTextRed">#EEDD2222</color>
+    <color name="colorEditTextCursorGrey">#777777</color>
 </resources>
