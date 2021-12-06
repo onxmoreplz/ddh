@@ -405,8 +405,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
                     userInfoHashMap["birthday"] = dataBinding.etSignUpBirth.text.toString()
                     userInfoHashMap["tel"] = dataBinding.etSignUpPhoneNumber.text.toString()
                     userInfoHashMap["gender"] = gender
-                    userInfoHashMap["personalInformation"] = "true"
-                    userInfoHashMap["recommendedCode"] = ""
+                    userInfoHashMap["recommendedCode"] = "" // 임시로 갖고 있음.
                     userRepository.postSignUp(
                         userInfoHashMap,
                         success = {
@@ -417,33 +416,34 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
                             }
                             Log.d("Button Sign Up", "Succee to SignUp")
                         },
-                        fail = { }
+                        fail = {
+                            Toast.makeText(this@SignUpEmailActivity, "${it.message}", Toast.LENGTH_SHORT).show()
+                            Log.d("Post Sign Up Method", it.message.toString())
+                        }
 
                     )
+                } else { // 이용약관 동의 체크하지 않은 경우
+                    dataBinding.lineOfCheckbox.setBackgroundColor(Color.argb(239, 221, 34, 34))
+                    Toast.makeText(context, "이용약관에 동의 해주세요.", Toast.LENGTH_SHORT).show()
                 }
-                else {
-                    Toast.makeText(context, "회원가입 형식이 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-        }
-    }
-
-    private fun checkAllEditTextValue(): Boolean {
-        for ((key, value) in isValidArrayList) {
-            if (!value) {
-                Toast.makeText(context, key + "형식이 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
-                return false
+            } else {
+                Toast.makeText(context, "이메일이 인증이 필요합니다.", Toast.LENGTH_SHORT).show()
             }
         }
-        return true
-    }
 
+        //[뒤로가기 <-] 버
+        dataBinding.btnBackToLoginActivity.setOnClickListener {
+            finish()
+        }
+
+
+    }
 
     private fun setTimer() {
         val dateFormat = SimpleDateFormat("mm:ss")
         val mCountDownTimer: CountDownTimer = object : CountDownTimer(300 * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
+                _millisUntilFinished = millisUntilFinished
                 tvTimer.text = dateFormat.format(millisUntilFinished).toString()
             }
 
