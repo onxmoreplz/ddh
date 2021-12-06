@@ -19,6 +19,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             android:paddingHorizontal="30dp"
             android:paddingVertical="24dp"
             android:scrollbars="none">
@@ -27,6 +28,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_back_to_login_activity"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#00333333"
+                        android:paddingLeft="-24dp"
+                        android:text="←"
+                        android:textColor="#555555"
+                        android:textSize="26dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="회원가입"
+                        android:textSize="24dp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -51,6 +85,8 @@
                         android:gravity="center_vertical"
                         android:hint="이메일 주소"
                         android:maxLength="35"
+                        android:textSelectHandle="@drawable/check"
+                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
                         android:singleLine="true"
                         android:text="@{vm.etEmail}"
                         android:textSize="13dp" />
@@ -99,8 +135,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:backgroundTint="#DDDDDD"
-                            android:hint="인증번호(8자리) 입력"
-                            android:maxLength="8"
+                            android:hint="인증번호(8~9 자리) 입력"
+                            android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                            android:maxLength="9"
                             android:singleLine="true"
                             android:textSize="13dp" />
 
@@ -121,8 +158,8 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_verify_code"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="54dp"
+                        android:layout_height="32dp"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="center"
                         android:layout_marginVertical="3.5dp"
@@ -132,14 +169,6 @@
                         android:paddingVertical="2dp"
                         android:text="확인"
                         android:textSize="11dp" />
-                    <TextView
-                        android:id="@+id/tv_verify_code"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:textColor="@color/colorEditTextRed"
-                        android:textSize="13dp"
-                        android:visibility="gone" />
 
                     <View
                         android:layout_width="0dp"
@@ -147,6 +176,14 @@
                         android:layout_weight="1" />
 
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_verify_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:textColor="@color/colorEditTextRed"
+                    android:textSize="13dp"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -166,6 +203,7 @@
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
                     android:hint="비밀번호"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:inputType="textPassword"
                     android:maxLength="24"
                     android:singleLine="true"
@@ -195,10 +233,12 @@
                     android:id="@+id/et_sign_up_second_pw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
                     android:hint="비밀번호 확인"
                     android:inputType="textPassword"
+                    android:maxLength="24"
                     android:singleLine="true"
                     android:textSize="13dp" />
 
@@ -228,7 +268,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="실명을 입력하세요."
+                    android:maxLength="35"
                     android:singleLine="true"
                     android:textSize="13dp" />
 
@@ -259,6 +301,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="'-'구분없이 입력"
                     android:inputType="phone"
                     android:maxLength="13"
@@ -290,6 +333,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="8자리 입력(예시 : 19950228)"
                     android:inputType="date"
                     android:maxLength="8"
@@ -371,6 +415,7 @@
                     </LinearLayout>
 
                     <View
+                        android:id="@+id/line_of_checkbox"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="12dp"
@@ -500,9 +545,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/button_round_sign_up"
+                    android:background="@drawable/button_round_sign_up_enabled"
+                    android:enabled="false"
                     android:gravity="center"
                     android:text="DDH 시작하기"
+                    android:textColor="@color/white"
                     android:textSize="16dp" />
                 <!--                    android:onClick="@{()->vm.signUpBtnClick()}"-->
 
