@@ -10,6 +10,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.TextView
@@ -35,6 +36,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private var userInfoHashMap = HashMap<String, String>()
 
+    private lateinit var mCountDownTimer: CountDownTimer
     private var imageBtnClicked: Boolean = false
     private lateinit var tvTimer: TextView
     private lateinit var emailVerifyingCode: String
@@ -145,7 +147,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         if (dataBinding.cbUsing.isChecked && dataBinding.cbPrivate.isChecked && dataBinding.cbMarketing.isChecked) {
-            dataBinding.ibCheckAll.setImageResource(R.drawable.confirmed)
+            dataBinding.ibCheckAll.setImageResource(R.drawable.red_check)
             dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(221, 221, 221))
             userInfoHashMap["personalInformation"] = "true"
         } else {
@@ -190,7 +192,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpBirth.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpBirth.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.tvBirthVaildCheck.text = "올바른 생년월일이 아닙니다."
                 dataBinding.tvBirthVaildCheck.visibility = View.VISIBLE
             } else {
@@ -210,7 +212,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpPhoneNumber.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpPhoneNumber.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.tvPhoneVaildCheck.text = "올바른 휴대폰 번호가 아닙니다"
                 dataBinding.tvPhoneVaildCheck.visibility = View.VISIBLE
             } else {
@@ -230,7 +232,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.tvNameVaildCheck.text = "한글로만 또는 영어로만 입력 가능합니다"
                 dataBinding.tvNameVaildCheck.visibility = View.VISIBLE
             } else {
@@ -243,7 +245,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private fun checkFirstAndSecondPassword(s: CharSequence?): Boolean {
         if (dataBinding.etSignUpSecondPw.text.toString() != s?.toString()) {
-            dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+            dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
             dataBinding.tvSecondPasswordVaildCheck.text = "비밀번호가 일치하지 않습니다"
             dataBinding.tvSecondPasswordVaildCheck.visibility = View.VISIBLE
             return true
@@ -261,7 +263,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.tvSecondPasswordVaildCheck.text = "비밀번호가 일치하지 않습니다"
                 dataBinding.tvSecondPasswordVaildCheck.visibility = View.VISIBLE
             } else {
@@ -281,12 +283,12 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
         val passwordRegEx = "^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[\$`~!@\$!%*#^?&\\\\(\\\\)\\-_=+]).{7,21}\$"
         if (s!!.isNotEmpty()) {
             if (s?.length!! < 8 || s?.length!! > 20) {
-                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.tvFirstPasswordVaildCheck.text = "비밀번호 길이는 8자리 이상 20자리 이하로 설정해주세요"
                 dataBinding.tvFirstPasswordVaildCheck.visibility = View.VISIBLE
                 return false
             } else if (!Pattern.matches(passwordRegEx, s)) {
-                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.tvFirstPasswordVaildCheck.text = "비밀번호는 숫자, 문자, 특수문자를 모두 1개 이상 포함해야합니다"
                 dataBinding.tvFirstPasswordVaildCheck.visibility = View.VISIBLE
                 return false
@@ -312,13 +314,13 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
                 dataBinding.tvTimer.visibility = View.GONE
                 dataBinding.tvVerifyCode.visibility = View.GONE
                 dataBinding.edtSignUpVerifyEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextGrey)
-
+                dataBinding.btnRequestCode.visibility = View.GONE
                 return true
 
             } else {
                 dataBinding.tvVerifyCode.visibility = View.VISIBLE
                 dataBinding.tvVerifyCode.text = "인증코드가 일치하지 않습니다."
-                dataBinding.edtSignUpVerifyEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.edtSignUpVerifyEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 return false
             }
         } else {
@@ -338,7 +340,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             if (s!!.isNotEmpty()) {
                 dataBinding.tvEmailVaildCheck.text = "올바른 이메일 형식이 아닙니다"
                 dataBinding.tvEmailVaildCheck.visibility = View.VISIBLE
-                dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextRed)
+                dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
                 dataBinding.btnRequestCode.isEnabled = false
             } else {
                 dataBinding.tvEmailVaildCheck.visibility = View.GONE
@@ -441,7 +443,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private fun setTimer() {
         val dateFormat = SimpleDateFormat("mm:ss")
-        val mCountDownTimer: CountDownTimer = object : CountDownTimer(300 * 1000, 1000) {
+        mCountDownTimer = object : CountDownTimer(300 * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 _millisUntilFinished = millisUntilFinished
                 tvTimer.text = dateFormat.format(millisUntilFinished).toString()
