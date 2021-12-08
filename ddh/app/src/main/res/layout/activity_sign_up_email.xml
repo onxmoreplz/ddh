@@ -62,14 +62,32 @@
                         android:layout_weight="1" />
                 </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:gravity="center_vertical"
-                    android:text="아이디(이메일)"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="아이디(이메일)"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,10 +103,9 @@
                         android:gravity="center_vertical"
                         android:hint="이메일 주소"
                         android:maxLength="35"
-                        android:textSelectHandle="@drawable/check"
-                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
                         android:singleLine="true"
                         android:text="@{vm.etEmail}"
+                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
                         android:textSize="13dp" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -136,9 +153,9 @@
                             android:layout_height="match_parent"
                             android:backgroundTint="#DDDDDD"
                             android:hint="인증번호(8~9 자리) 입력"
-                            android:textCursorDrawable="@drawable/edittext_cursor_grey"
                             android:maxLength="9"
                             android:singleLine="true"
+                            android:textCursorDrawable="@drawable/edittext_cursor_grey"
                             android:textSize="13dp" />
 
                         <TextView
@@ -176,6 +193,7 @@
                         android:layout_weight="1" />
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/tv_verify_code"
                     android:layout_width="match_parent"
@@ -186,15 +204,32 @@
                     android:visibility="gone" />
 
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
-                    android:text="비밀번호"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="비밀번호"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/et_sign_up_first_pw"
@@ -203,10 +238,10 @@
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
                     android:hint="비밀번호"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:inputType="textPassword"
                     android:maxLength="24"
                     android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:textSize="13dp" />
 
                 <TextView
@@ -218,28 +253,46 @@
                     android:textSize="13dp"
                     android:visibility="gone" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center_vertical"
-                    android:text="비밀번호 확인"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="비밀번호 확인"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
 
                 <EditText
                     android:id="@+id/et_sign_up_second_pw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
                     android:hint="비밀번호 확인"
                     android:inputType="textPassword"
                     android:maxLength="24"
                     android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:textSize="13dp" />
 
                 <TextView
@@ -252,15 +305,32 @@
                     android:textSize="13dp"
                     android:visibility="gone" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
-                    android:text="이름"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="이름"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/et_sign_up_name"
@@ -268,10 +338,10 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="실명을 입력하세요."
                     android:maxLength="35"
                     android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:textSize="13dp" />
 
                 <TextView
@@ -284,16 +354,34 @@
                     android:textSize="13dp"
                     android:visibility="gone" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center_vertical"
-                    android:text="휴대폰번호"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="휴대폰번호"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
 
                 <EditText
                     android:id="@+id/et_sign_up_phone_number"
@@ -301,11 +389,11 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="'-'구분없이 입력"
                     android:inputType="phone"
                     android:maxLength="13"
                     android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:textSize="13dp" />
 
                 <TextView
@@ -317,15 +405,34 @@
                     android:textSize="13dp"
                     android:visibility="gone" />
 
-                <TextView
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
-                    android:text="생년월일"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="생년월일"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
 
                 <EditText
                     android:id="@+id/et_sign_up_birth"
@@ -333,11 +440,11 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
                     android:gravity="center_vertical"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="8자리 입력(예시 : 19950228)"
                     android:inputType="date"
                     android:maxLength="8"
                     android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:textSize="13dp" />
 
                 <TextView
@@ -349,16 +456,34 @@
                     android:textSize="13dp"
                     android:visibility="gone" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center_vertical"
-                    android:text="성별"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="성별"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
 
                 <RadioGroup
                     android:id="@+id/radioGroup_gender"
