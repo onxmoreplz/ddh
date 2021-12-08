@@ -65,27 +65,31 @@ class LoginActivity : Activity() {
 
 
     private fun setBtn() {
+        // [로그인] 버튼
         databinding.btnLogin.setOnClickListener {
-            if (isEmailValid) {
-                etEmail = databinding.etEmail.text.toString().trim()
-                etPassword = databinding.etPw.text.toString().trim()
-                postUserLogin(etEmail, etPassword)
+            if (databinding.etEmail.toString().isNotEmpty()) {
+                if(databinding.etPw.toString().isNotEmpty()) {
+                    etEmail = databinding.etEmail.text.toString().trim()
+                    etPassword = databinding.etPw.text.toString().trim()
+                    postUserLogin(etEmail, etPassword)
+                } else {
+                    Toast.makeText(this@LoginActivity, "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(this@LoginActivity, "it.data!!.message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "이메일을 입력하세요.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        findViewById<Button>(R.id.btn_sign_up).setOnClickListener {
-            val intent = Intent(this, SignUpEmailActivity::class.java)
-            startActivity(intent)
+        // [회원가입] 버튼
+        databinding.btnSignUp.setOnClickListener {
+            startActivity(Intent(this, SignUpEmailActivity::class.java))
         }
-
     }
 
     private fun postUserLogin(email: String, password: String) {
         val loginHashMap = HashMap<String, String>()
-        loginHashMap["email"] = email!!
-        loginHashMap["password"] = password!!
+        loginHashMap["email"] = email
+        loginHashMap["password"] = password
         userRepository.postLogin(
             loginHashMap,
             success = {

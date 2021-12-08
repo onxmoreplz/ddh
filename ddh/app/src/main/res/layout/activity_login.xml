@@ -42,7 +42,9 @@
                     android:layout_marginBottom="12dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="DDH"
+                    android:text="등산의 목적"
+                    android:textStyle="bold"
+                    android:textColor="#d41c26"
                     android:textSize="32dp" />
 
                 <EditText
@@ -51,7 +53,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:backgroundTint="#DDDDDD"
-                    android:hint="카카오계정(이메일 또는 전화번호)"
+                    android:hint="이메일 계정"
                     android:singleLine="true"
                     android:text="@{vm.email}"
                     android:textSize="18dp" />
@@ -73,7 +75,8 @@
                     android:layout_height="0dp"
                     android:layout_marginBottom="20dp"
                     android:layout_weight="0.4"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="4dp">
 
                     <ImageView
                         android:layout_width="14dp"
@@ -86,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="로그인 상태유지 "
+                        android:text="로그인 상태유지"
                         android:textSize="14dp" />
 
                 </LinearLayout>
