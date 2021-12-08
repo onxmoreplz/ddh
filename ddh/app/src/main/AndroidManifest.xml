@@ -13,10 +13,7 @@
         android:supportsRtl="true">
         <activity android:name=".signup.SignUpCompleteActivity"
             android:theme="@style/Theme.Ddh">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".signup.SignUpEmailActivity"
@@ -24,7 +21,10 @@
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/SplashTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".main.MainActivity"
