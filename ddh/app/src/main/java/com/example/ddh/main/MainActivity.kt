@@ -1,7 +1,5 @@
 package com.example.ddh.main
 
-import android.app.Activity
-import android.graphics.Color
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -10,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.ddh.R
 import com.example.ddh.databinding.ActivityMainBinding
 import com.example.ddh.main.fragment.home.HomeFragment
+import com.example.ddh.main.fragment.mypage.MypageFragment
 import com.example.ddh.main.fragment.search.SearchFragment
 
 class MainActivity : FragmentActivity() {
@@ -18,6 +17,7 @@ class MainActivity : FragmentActivity() {
 
     private val homeFragment by lazy { HomeFragment() }
     private val searchFragment by lazy { SearchFragment() }
+    private val mypageFragment by lazy { MypageFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,7 +44,7 @@ class MainActivity : FragmentActivity() {
                         setFragment(searchFragment)
                     }
                     R.id.myPage -> {
-                        setFragment(searchFragment)
+                        setFragment(mypageFragment)
                     }
                 }
                 true
