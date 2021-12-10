@@ -147,7 +147,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         if (dataBinding.cbUsing.isChecked && dataBinding.cbPrivate.isChecked && dataBinding.cbMarketing.isChecked) {
-            dataBinding.ibCheckAll.setImageResource(R.drawable.red_check)
+            dataBinding.ibCheckAll.setImageResource(R.drawable.icon_red_check)
             dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(221, 221, 221))
             userInfoHashMap["personalInformation"] = "true"
         } else {

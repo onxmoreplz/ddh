@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/red_check"
+        android:icon="@drawable/icon_red_check"
         android:title="산 검색" />
 
 <!--    <item-->

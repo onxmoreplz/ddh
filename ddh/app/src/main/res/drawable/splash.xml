@@ -3,7 +3,7 @@
     <item android:drawable="@color/white" />
     <item>
         <bitmap
-            android:src="@drawable/red_check"
+            android:src="@drawable/icon_red_check"
             android:gravity="center"/>
     </item>
 </layer-list>
