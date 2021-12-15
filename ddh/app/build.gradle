@@ -82,4 +82,7 @@ dependencies {
 
     // Kakao Login
     implementation "com.kakao.sdk:v2-user:2.0.5"
+
+    // Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
