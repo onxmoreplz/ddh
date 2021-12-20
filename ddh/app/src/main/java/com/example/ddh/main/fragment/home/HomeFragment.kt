@@ -1,27 +1,20 @@
 package com.example.ddh.main.fragment.home
 
-import android.icu.util.IndianCalendar
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ddh.R
+import com.example.ddh.base.UtilityBase
+import com.example.ddh.databinding.FragmentHomeBinding
 import me.relex.circleindicator.CircleIndicator3
 
-class HomeFragment : Fragment() {
+class HomeFragment : UtilityBase.BaseFragment<FragmentHomeBinding>(
+    R.layout.fragment_home
+) {
 
-    private lateinit var v: View
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        v = inflater.inflate(R.layout.fragment_home, container, false)
-
+    override fun FragmentHomeBinding.onCreateView() {
         setViewPager()
-        return v
+    }
+
+    override fun FragmentHomeBinding.onViewCreated() {
     }
 
     private fun setViewPager() {
@@ -31,10 +24,10 @@ class HomeFragment : Fragment() {
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZvWOF2nTMtMYemS0Heu7D1WqnovJlYmQnW_5iuBMa8Pnyd8wS53Niom9XkQpYkSjdymo&usqp=CAU"
         )
 
-        val vpHomePictures: ViewPager2 = v.findViewById(R.id.vp_home_picture)
-        val indicator: CircleIndicator3 = v.findViewById(R.id.vp_indicator)
+        val vpHomePictures: ViewPager2 = binding.vpHomePicture
+        val indicator: CircleIndicator3 = binding.vpIndicator
         vpHomePictures.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        vpHomePictures.adapter = HomePicturesViewPagerAdapter(v.context, arrayList)
+        vpHomePictures.adapter = HomePicturesViewPagerAdapter(arrayList)
 
         // 슬라이드할 경우 실행할 이벤트
         vpHomePictures.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
