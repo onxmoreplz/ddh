@@ -144,7 +144,7 @@ class LoginActivity : Activity() {
                 }
             },
             fail = {
-                Log.e("postUserLogin", "Fail to Login :")
+                Log.e("postUserLogin", "Fail to Login : ${it.message}")
             }
         )
     }
