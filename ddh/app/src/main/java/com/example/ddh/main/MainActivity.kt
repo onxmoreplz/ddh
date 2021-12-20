@@ -35,16 +35,16 @@ class MainActivity : FragmentActivity() {
             setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.home -> {
-                        setFragment(homeFragment)
+                        replaceFragment(homeFragment)
                     }
                     R.id.feed -> {
-                        setFragment(searchFragment)
+                        replaceFragment(searchFragment)
                     }
                     R.id.search -> {
-                        setFragment(searchFragment)
+                        replaceFragment(searchFragment)
                     }
                     R.id.myPage -> {
-                        setFragment(mypageFragment)
+                        replaceFragment(mypageFragment)
                     }
                 }
                 true
@@ -58,7 +58,7 @@ class MainActivity : FragmentActivity() {
      *
      * @param fragment: Fragment 전환될 프래그먼트
      */
-    private fun setFragment(fragment: Fragment) {
+    public fun replaceFragment(fragment: Fragment) {
         val manager: FragmentManager = supportFragmentManager
         manager.beginTransaction()
             .replace(R.id.fl_container, fragment)
