@@ -32,5 +32,4 @@
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
 </resources>
