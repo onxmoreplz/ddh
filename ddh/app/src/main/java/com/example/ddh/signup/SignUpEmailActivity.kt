@@ -65,32 +65,26 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             RxTextView.textChanges(dataBinding.etSignUpSecondPw),
             RxTextView.textChanges(dataBinding.etSignUpName),
             RxTextView.textChanges(dataBinding.etSignUpPhoneNumber),
-            RxTextView.textChanges(dataBinding.etSignUpBirth),
-            { rxEmail, rxPassword1, rxPassword2, rxName, rxPhone, rxBirth ->
+//            RxTextView.textChanges(dataBinding.etSignUpBirth),
+            { rxEmail, rxPassword1, rxPassword2, rxName, rxPhone ->
 
-                checkEmail(rxEmail); checkFirstPassword(rxPassword1); checksecondPassword(rxPassword2); checkname(rxName); checkPhoneNumber(rxPhone); checkBirth(rxBirth)
+                checkEmail(rxEmail); checkFirstPassword(rxPassword1); checksecondPassword(rxPassword2); checkname(rxName); checkPhoneNumber(rxPhone);
                 if (isFirstPasswordInput) {
-                    if (checkFirstAndSecondPassword(rxPassword1) && checkEmail(rxEmail) && checkFirstPassword(rxPassword1) && checksecondPassword(rxPassword2) && checkname(rxName) && checkPhoneNumber(rxPhone) && checkBirth(
-                            rxBirth
-                        )
+                    if (checkFirstAndSecondPassword(rxPassword1) && checkEmail(rxEmail) && checkFirstPassword(rxPassword1) && checksecondPassword(rxPassword2) && checkname(rxName) && checkPhoneNumber(rxPhone)
                     ) {
                         dataBinding.btnSignUp.isEnabled = true
                         dataBinding.btnSignUp.setBackgroundResource(R.drawable.button_round_sign_up_activate)
-                        dataBinding.btnSignUp.setTextColor(Color.WHITE)
                     } else {
                         dataBinding.btnSignUp.isEnabled = false
                         dataBinding.btnSignUp.setBackgroundResource(R.drawable.button_round_sign_up_enabled)
-                        dataBinding.btnSignUp.setTextColor(Color.BLACK)
                     }
                 } else {
-                    if (checkEmail(rxEmail) && checkFirstPassword(rxPassword1) && checksecondPassword(rxPassword2) && checkname(rxName) && checkPhoneNumber(rxPhone) && checkBirth(rxBirth)) {
+                    if (checkEmail(rxEmail) && checkFirstPassword(rxPassword1) && checksecondPassword(rxPassword2) && checkname(rxName) && checkPhoneNumber(rxPhone)) {
                         dataBinding.btnSignUp.isEnabled = true
                         dataBinding.btnSignUp.setBackgroundResource(R.drawable.button_round_sign_up_activate)
-                        dataBinding.btnSignUp.setTextColor(Color.WHITE)
                     } else {
                         dataBinding.btnSignUp.isEnabled = false
                         dataBinding.btnSignUp.setBackgroundResource(R.drawable.button_round_sign_up_enabled)
-                        dataBinding.btnSignUp.setTextColor(Color.BLACK)
                     }
                 }
             }
@@ -151,7 +145,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(221, 221, 221))
             userInfoHashMap["personalInformation"] = "true"
         } else {
-            dataBinding.ibCheckAll.setImageResource(R.drawable.check)
+            dataBinding.ibCheckAll.setImageResource(R.drawable.icon_agreement)
             userInfoHashMap["personalInformation"] = "false"
         }
     }
@@ -169,7 +163,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
     }
 
     private fun setRadioGroup() {
-        dataBinding.radioGroupGender.setOnCheckedChangeListener { group, checkedId ->
+/*        dataBinding.radioGroupGender.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.rg_men -> {
                     gender = "남자"
@@ -181,10 +175,10 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
         }
         if (dataBinding.rgMen.isChecked) {
         } else {
-        }
+        }*/
     }
 
-    private fun checkBirth(s: CharSequence?): Boolean {
+/*    private fun checkBirth(s: CharSequence?): Boolean {
         val birthRegEx = "^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\$"
         if (Pattern.matches(birthRegEx, s)) {
             dataBinding.etSignUpBirth.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextGrey)
@@ -202,7 +196,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return false
         }
 
-    }
+    }*/
 
     private fun checkPhoneNumber(s: CharSequence?): Boolean {
         val phoneNumberRegEx = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})\$"
@@ -404,7 +398,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
                     userInfoHashMap["email"] = dataBinding.etSignUpEmail.text.toString()
                     userInfoHashMap["password"] = dataBinding.etSignUpSecondPw.text.toString()
                     userInfoHashMap["name"] = dataBinding.etSignUpName.text.toString()
-                    userInfoHashMap["birthday"] = dataBinding.etSignUpBirth.text.toString()
+//                    userInfoHashMap["birthday"] = dataBinding.etSignUpBirth.text.toString()
                     userInfoHashMap["tel"] = dataBinding.etSignUpPhoneNumber.text.toString()
                     userInfoHashMap["gender"] = gender
                     userInfoHashMap["recommendedCode"] = "" // 임시로 갖고 있음.
@@ -433,8 +427,8 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             }
         }
 
-        //[뒤로가기 <-] 버
-        dataBinding.btnBackToLoginActivity.setOnClickListener {
+        //[뒤로가기 <-] 버튼
+        dataBinding.btnBackToSocialLoginActivity.setOnClickListener {
             finish()
         }
 
