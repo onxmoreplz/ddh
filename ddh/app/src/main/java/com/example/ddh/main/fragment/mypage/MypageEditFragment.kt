@@ -5,13 +5,13 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.ddh.R
 import com.example.ddh.base.UtilityBase
 import com.example.ddh.databinding.FragmentMypageEditBinding
 import com.example.ddh.main.MainActivity
 import com.example.ddh.main.fragment.mypage.edit.*
+
 
 class MypageEditFragment : UtilityBase.BaseFragment<FragmentMypageEditBinding>(
     R.layout.fragment_mypage_edit
@@ -22,6 +22,7 @@ class MypageEditFragment : UtilityBase.BaseFragment<FragmentMypageEditBinding>(
     private val editPassWordFragment by lazy { EditPasswordFragment() }
     private val editPhoneFragment by lazy { EditPhoneFragment() }
     private val editBirthFragment by lazy { EditBirthFragment() }
+    private val mypageFragment by lazy { MypageFragment() }
 
     val REQUEST_CODE_GALLARY = 0
 
@@ -34,33 +35,17 @@ class MypageEditFragment : UtilityBase.BaseFragment<FragmentMypageEditBinding>(
     }
 
     private fun setOnClickListener() {
-        binding.btnEditName.setOnClickListener(this)
-        binding.btnEditEmail.setOnClickListener(this)
-        binding.btnEditPassword.setOnClickListener(this)
-        binding.btnEditPhone.setOnClickListener(this)
-        binding.btnEditBirth.setOnClickListener(this)
         binding.civProfilePic.setOnClickListener(this)
+        binding.btnBackToMypage.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            binding.btnEditName -> {
-                (activity as MainActivity).replaceFragment(editNameFragment)
-            }
-            binding.btnEditEmail -> {
-                (activity as MainActivity).replaceFragment(editEmailFragment)
-            }
-            binding.btnEditPassword -> {
-                (activity as MainActivity).replaceFragment(editPassWordFragment)
-            }
-            binding.btnEditPhone -> {
-                (activity as MainActivity).replaceFragment(editPhoneFragment)
-            }
-            binding.btnEditBirth -> {
-                (activity as MainActivity).replaceFragment(editBirthFragment)
-            }
             binding.civProfilePic, binding.civEditProfilePictureCamera -> {
                 loadImage()
+            }
+            binding.btnBackToMypage -> {
+                (activity as MainActivity).replaceFragmentNoBackStack(mypageFragment)
             }
         }
     }
@@ -94,7 +79,7 @@ class MypageEditFragment : UtilityBase.BaseFragment<FragmentMypageEditBinding>(
                         .load(imageUrl)
                         .placeholder(R.drawable.icon_home)
                         .into(binding.civProfilePic)
-                }catch (e: Exception) {
+                } catch (e: Exception) {
 //                    Toast.makeText(this, "$e", Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
                 }

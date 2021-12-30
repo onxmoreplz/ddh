@@ -1,21 +1,33 @@
 package com.example.ddh.main.fragment.mypage
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.example.ddh.R
+import com.example.ddh.base.UtilityBase
+import com.example.ddh.databinding.FragmentMypageBinding
+import com.example.ddh.main.MainActivity
 
-class MypageFragment : Fragment() {
+class MypageFragment : UtilityBase.BaseFragment<FragmentMypageBinding>(
+    R.layout.fragment_mypage
+), View.OnClickListener {
+    private val mypageEditFragment by lazy { MypageEditFragment() }
 
-    private lateinit var v: View
+    override fun FragmentMypageBinding.onCreateView() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        v = inflater.inflate(R.layout.fragment_mypage, container, false)
+    }
 
-        return v
+    override fun FragmentMypageBinding.onViewCreated() {
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener() {
+        binding.btnMyPageEdit.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when(v) {
+            binding.btnMyPageEdit -> {
+                (activity as MainActivity).replaceFragmentAddToBackStack(mypageEditFragment)
+            }
+        }
     }
 }

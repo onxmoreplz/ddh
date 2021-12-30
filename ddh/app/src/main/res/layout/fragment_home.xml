@@ -1,87 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".main.fragment.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".main.fragment.home.HomeFragment">
 
-        <LinearLayout
-            android:id="@+id/ll_header"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="등산의 목적"
-                android:textColor="#d41c26"
-                android:textSize="26dp"
-                android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right"
-                android:orientation="horizontal"
-                android:paddingRight="12dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="12dp"
-                    android:src="@drawable/ic_home" />
+                <LinearLayout
+                    android:id="@+id/ll_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_user" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/logo_main" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:paddingRight="12dp">
+
+                        <!--                    <ImageButton
+                                                android:layout_width="28dp"
+                                                android:layout_height="28dp"
+                                                android:layout_gravity="center_vertical"
+                                                android:layout_marginRight="12dp"
+                                                android:src="@drawable/icon_home" />
+
+                                            <ImageButton
+                                                android:layout_width="28dp"
+                                                android:layout_height="28dp"
+                                                android:layout_gravity="center_vertical"
+                                                android:src="@drawable/ic_user" />-->
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:background="#DDDDDD"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vp_home_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/vp_indicator"
+                        android:layout_centerInParent="true" />
+
+                    <me.relex.circleindicator.CircleIndicator3
+                        android:id="@+id/vp_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="bottom"
+                        android:background="@android:color/transparent" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ll_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="21dp"
+                    android:background="@drawable/edittext_round_main_red">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actv_recipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:completionThreshold="1"
+                        android:drawableRight="@drawable/icon_search"
+                        android:dropDownHeight="260dp"
+                        android:hint="새로운 모임을 찾아보세요"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingRight="10dp"
+                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                        android:textSize="16dp" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="22dp"
+                    android:layout_marginTop="26dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:text="새로운 모임"
+                        android:textColor="#3F3F3F" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical">
+
+                        <ImageButton
+                            android:id="@+id/ib_create_party"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/icon_plus" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginHorizontal="22dp"
+                    android:background="@drawable/button_round_sign_up_enabled">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="22dp"
+                    android:layout_marginTop="26dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:text="마감임박 모임"
+                        android:textColor="#3F3F3F" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginHorizontal="22dp"
+                    android:background="@drawable/button_round_sign_up_enabled">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="22dp"
+                    android:layout_marginTop="26dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:text="인기 모임"
+                        android:textColor="#3F3F3F" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginHorizontal="22dp"
+                    android:background="@drawable/button_round_sign_up_enabled">
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="38dp"
+            android:backgroundTint="@color/colorMainRed"
+            app:backgroundTint="#00FFFFFF"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="#DDDDDD">
+            app:pressedTranslationZ="0dp"
+            app:rippleColor="#DDDDDD"
+            app:srcCompat="@drawable/icon_plus"
+            app:tint="@color/white" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_home_picture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/vp_indicator"
-                android:layout_centerInParent="true" />
-
-            <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/vp_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom"
-                android:background="@android:color/transparent" />
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

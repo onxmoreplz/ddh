@@ -14,14 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".login.LoginActivity">
+        tools:context=".login.LocalLoginActivity">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="24dp"
+            android:paddingHorizontal="120px"
             android:scrollbars="none">
 
             <LinearLayout
@@ -32,48 +31,57 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="140px"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_back_to_login_activity"
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#00333333"
-                        android:paddingLeft="-24dp"
-                        android:text="←"
-                        android:textColor="#555555"
-                        android:textSize="26dp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical|left">
+
+                        <Button
+                            android:id="@+id/btn_back_to_social_login_activity"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/left_arrow"
+
+                            />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center"
                         android:text="회원가입"
-                        android:textSize="24dp" />
+                        android:textSize="21dp"
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="2" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
+                    android:layout_marginTop="100px"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center_vertical"
-                        android:text="아이디(이메일)"
+                        android:text="아이디(이메일 주소)"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -101,7 +109,7 @@
                         android:layout_weight="4"
                         android:backgroundTint="#DDDDDD"
                         android:gravity="center_vertical"
-                        android:hint="이메일 주소"
+                        android:hint="이메일 주소를 입력해주세요"
                         android:maxLength="35"
                         android:singleLine="true"
                         android:text="@{vm.etEmail}"
@@ -119,6 +127,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_round_verify_email"
                         android:enabled="false"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center"
                         android:paddingVertical="2dp"
                         android:text="인증요청"
@@ -215,6 +224,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center_vertical"
                         android:text="비밀번호"
                         android:textSize="14dp"
@@ -236,8 +246,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical"
-                    android:hint="비밀번호"
+                    android:hint="비밀번호를 입력해주세요 (8~20자 / 문자, 숫자 혼용)"
                     android:inputType="textPassword"
                     android:maxLength="24"
                     android:singleLine="true"
@@ -265,6 +276,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center_vertical"
                         android:text="비밀번호 확인"
                         android:textSize="14dp"
@@ -287,8 +299,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical"
-                    android:hint="비밀번호 확인"
+                    android:hint="비밀번호를 확인해주세요"
                     android:inputType="textPassword"
                     android:maxLength="24"
                     android:singleLine="true"
@@ -310,6 +323,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -337,6 +351,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical"
                     android:hint="실명을 입력하세요."
                     android:maxLength="35"
@@ -359,6 +374,82 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:gravity="center_vertical"
+                        android:text="닉네임"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="-4dp"
+                        android:text="・"
+                        android:textColor="@color/colorMainRed"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_sign_up_nickname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:backgroundTint="#DDDDDD"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:gravity="center_vertical"
+                        android:hint="닉네임을 입력해주세요"
+                        android:maxLength="35"
+                        android:singleLine="true"
+                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                        android:textSize="13dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_check_nickname"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="3.5dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_round_verify_email"
+                        android:enabled="false"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:gravity="center"
+                        android:paddingVertical="2dp"
+                        android:text="중복확인"
+                        android:textSize="11dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_nickname_vaild_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:maxLength="24"
+                    android:textColor="@color/colorEditTextRed"
+                    android:textSize="13dp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="18dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -366,6 +457,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center_vertical"
                         android:text="휴대폰번호"
                         android:textSize="14dp"
@@ -388,8 +480,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#DDDDDD"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical"
-                    android:hint="'-'구분없이 입력"
+                    android:hint="'-'구분없이 입력해주세요"
                     android:inputType="phone"
                     android:maxLength="13"
                     android:singleLine="true"
@@ -406,7 +499,7 @@
                     android:visibility="gone" />
 
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
@@ -510,10 +603,11 @@
                         android:textSize="12dp"
                         android:theme="@style/CustomRadioButton" />
                 </RadioGroup>
-
+-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/layout_border"
                     android:orientation="vertical">
@@ -528,12 +622,13 @@
                             android:id="@+id/ib_check_all"
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            android:src="@drawable/check" />
+                            android:src="@drawable/icon_agreement" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="12dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="모두 동의합니다."
                             android:textSize="15dp"
                             android:textStyle="bold" />
@@ -563,8 +658,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:gravity="center"
-                            android:text="이용약관 동의"
+                            android:text="(필수) 이용약관 동의"
                             android:textSize="12dp" />
 
                         <LinearLayout
@@ -578,6 +674,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right"
                                 android:background="#00000000"
+                                android:fontFamily="@font/noto_sans_kr_regular"
                                 android:gravity="center"
                                 android:text="보기 >"
                                 android:textColor="#999999"
@@ -602,8 +699,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:gravity="center"
-                            android:text="개인정보 취급방침 동의"
+                            android:text="(필수) 개인정보 취급방침 동의"
                             android:textSize="12dp" />
 
                         <LinearLayout
@@ -617,6 +715,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right"
                                 android:background="#00000000"
+                                android:fontFamily="@font/noto_sans_kr_regular"
                                 android:gravity="center"
                                 android:text="보기 >"
                                 android:textColor="#999999"
@@ -641,8 +740,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:gravity="center"
-                            android:text="마케팅 정보 수신 동의"
+                            android:text="(필수) 마케팅 정보 수신 동의"
                             android:textSize="12dp" />
 
                         <LinearLayout
@@ -656,6 +756,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="right"
                                 android:background="#00000000"
+                                android:fontFamily="@font/noto_sans_kr_regular"
                                 android:gravity="center"
                                 android:text="보기 >"
                                 android:textColor="#999999"
@@ -672,10 +773,11 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/button_round_sign_up_enabled"
                     android:enabled="false"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center"
                     android:text="가입하기"
                     android:textColor="@color/white"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
                 <!--                    android:onClick="@{()->vm.signUpBtnClick()}"-->
 
             </LinearLayout>

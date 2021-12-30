@@ -22,11 +22,9 @@ class LoginViewModel(
     val failLogin = ObservableField<Unit>()
 
     fun getUserLoginInfo() {
-        val loginHashMap = HashMap<String, String>()
-        loginHashMap["email"] = email.toString()!!
-        loginHashMap["password"] = password.toString()!!
-        userRepository.postLogin(
-            loginHashMap,
+        userRepository.getLogin(
+            email.toString()!!,
+            password.toString()!!,
             success = {
                 it.run {
                     when (code) {

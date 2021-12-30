@@ -2,23 +2,23 @@ package com.example.ddh.login
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.ddh.R
 import com.example.ddh.data.repository.UserRepositoryImpl
-import com.example.ddh.databinding.ActivityLoginBinding
+import com.example.ddh.databinding.ActivityLocalLoginBinding
+import com.example.ddh.login.find.FindIdActivity
+import com.example.ddh.login.find.FindPasswordActivity
 import com.example.ddh.main.MainActivity
 import com.example.ddh.signup.SignUpEmailActivity
-import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 
-class LoginActivity : Activity() {
+class LocalLoginActivity : Activity() {
 
-    private lateinit var databinding: ActivityLoginBinding
+    private lateinit var databinding: ActivityLocalLoginBinding
 
     private val userRepository = UserRepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
     private val loginViewmodel = LoginViewModel(userRepository)
@@ -33,12 +33,12 @@ class LoginActivity : Activity() {
         setTheme(R.style.Theme_Ddh)// 스플래시로 인해 변경되었던 Theme 되돌림
 
         super.onCreate(savedInstanceState)
-        databinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        databinding = DataBindingUtil.setContentView(this, R.layout.activity_local_login)
         databinding.vm = loginViewmodel
 
 //        setObserveViewModelEvent()
         setSocialLoginBtn()
-        setBtn()
+        setBtnAndTextview()
     }
 
     private fun setSocialLoginBtn() {
@@ -86,7 +86,7 @@ class LoginActivity : Activity() {
         }
 
         // [카카오 로그인] 버튼 리스너
-        databinding.btnKakaoLogin.setOnClickListener {
+/*        databinding.btnKakaoLogin.setOnClickListener {
             if (LoginClient.instance.isKakaoTalkLoginAvailable(this)) {
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
             } else {
@@ -94,12 +94,12 @@ class LoginActivity : Activity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.kakao.talk&hl=ko&gl=US"))
                 startActivity(intent)
             }
-        }
+        }*/
 
 
     }
 
-    private fun setBtn() {
+    private fun setBtnAndTextview() {
         // [로그인] 버튼
         databinding.btnLogin.setOnClickListener {
             if (databinding.etEmail.toString().isNotEmpty()) {
@@ -108,36 +108,43 @@ class LoginActivity : Activity() {
                     etPassword = databinding.etPw.text.toString().trim()
                     postUserLogin(etEmail, etPassword)
                 } else {
-                    Toast.makeText(this@LoginActivity, "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LocalLoginActivity, "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this@LoginActivity, "이메일을 입력하세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LocalLoginActivity, "이메일을 입력하세요.", Toast.LENGTH_SHORT).show()
             }
+        }
+        databinding.btnBackToSocialLoginActivity.setOnClickListener{
+            finish()
         }
 
         // [회원가입] 버튼
-        databinding.btnSignUp.setOnClickListener {
+        databinding.tvSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpEmailActivity::class.java))
+        }
+        databinding.tvFindId.setOnClickListener {
+            startActivity(Intent(this, FindIdActivity::class.java))
+        }
+        databinding.tvFindPassword.setOnClickListener {
+            startActivity(Intent(this, FindPasswordActivity::class.java))
         }
     }
 
     private fun postUserLogin(email: String, password: String) {
-        val loginHashMap = HashMap<String, String>()
-        loginHashMap["email"] = email
-        loginHashMap["password"] = password
-        userRepository.postLogin(
-            loginHashMap,
+        userRepository.getLogin(
+            email,
+            password,
             success = {
                 it.run {
                     when (code) {
                         0 -> { // 로그인 성공
                             val loginUserName: String = it.data!!.name!!
                             val bundle: Bundle
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            val intent = Intent(this@LocalLoginActivity, MainActivity::class.java)
                             startActivity(intent)
                         }
                         else -> {
-                            Toast.makeText(this@LoginActivity, it.data!!.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LocalLoginActivity, it.data!!.message, Toast.LENGTH_SHORT).show()
                         }
                     }
 
