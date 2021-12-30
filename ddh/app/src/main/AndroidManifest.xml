@@ -13,23 +13,22 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_red_check"
         android:supportsRtl="true">
-        <activity android:name=".signup.SignUpCompleteActivity"
-            android:theme="@style/Theme.Ddh">
-
-        </activity>
+        <activity android:name=".login.find.FindResultIdActivity"></activity>
         <activity
-            android:name=".signup.SignUpEmailActivity"
+            android:name=".login.find.FindPasswordActivity"
             android:theme="@style/Theme.Ddh" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".login.find.FindIdActivity"
+            android:theme="@style/Theme.Ddh" />
+        <activity
+            android:name=".login.SocialLoginActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
 
                 <data
                     android:host="oauth"
@@ -37,10 +36,22 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".signup.SignUpCompleteActivity"
+            android:theme="@style/Theme.Ddh" />
+        <activity
+            android:name=".signup.SignUpEmailActivity"
+            android:theme="@style/Theme.Ddh" />
+        <activity
+            android:name=".login.LocalLoginActivity"
+            android:theme="@style/Theme.Ddh" />
+        <activity
             android:name=".main.MainActivity"
-            android:theme="@style/Theme.Ddh"
-            android:configChanges="orientation|screenSize|keyboardHidden" >
-
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.Ddh" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
