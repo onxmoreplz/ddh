@@ -35,16 +35,16 @@ class MainActivity : FragmentActivity() {
             setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.home -> {
-                        replaceFragment(homeFragment)
+                        replaceFragmentAddToBackStack(homeFragment)
                     }
-                    R.id.feed -> {
-                        replaceFragment(searchFragment)
+                    R.id.chat -> {
+                        replaceFragmentAddToBackStack(searchFragment)
                     }
                     R.id.search -> {
-                        replaceFragment(searchFragment)
+                        replaceFragmentAddToBackStack(searchFragment)
                     }
-                    R.id.myPage -> {
-                        replaceFragment(mypageFragment)
+                    R.id.profile -> {
+                        replaceFragmentAddToBackStack(mypageFragment)
                     }
                 }
                 true
@@ -58,11 +58,19 @@ class MainActivity : FragmentActivity() {
      *
      * @param fragment: Fragment 전환될 프래그먼트
      */
-    public fun replaceFragment(fragment: Fragment) {
+    fun replaceFragmentAddToBackStack(fragment: Fragment) {
         val manager: FragmentManager = supportFragmentManager
         manager.beginTransaction()
             .replace(R.id.fl_container, fragment)
             .addToBackStack(null)
             .commit()
     }
+
+    fun replaceFragmentNoBackStack(fragment: Fragment) {
+        val manager: FragmentManager = supportFragmentManager
+        manager.beginTransaction()
+            .replace(R.id.fl_container, fragment)
+            .commit()
+    }
+
 }

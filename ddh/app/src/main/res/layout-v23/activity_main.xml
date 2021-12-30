@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,42 +10,45 @@
             type="com.example.ddh.main.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fitsSystemWindows="false"
+        tools:context=".MainActivity">
 
         <FrameLayout
             android:id="@+id/fl_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="52dp">
+
+        </FrameLayout>
 
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_navigation_bar"
+            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/fl_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:gravity="center"
-            tools:ignore="BottomAppBar">
+            android:layout_height="52dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/nav_radius"
+            app:fabCradleMargin="0dp"
+            app:fabCradleRoundedCornerRadius="0dp"
+            app:fabCradleVerticalOffset="0dp">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bnv_home"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:paddingBottom="2dp"
-                android:background="#DD3333"
-                app:itemIconTint="@drawable/nav_icon_color_red"
-                app:itemTextColor="@drawable/nav_icon_color_red"
+                android:layout_height="52dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                app:backgroundTint="@color/white"
+                app:itemIconTint="@drawable/bottom_icon_color"
+                app:itemTextAppearanceActive="@style/FontCaption"
+                app:itemTextAppearanceInactive="@style/FontCaption"
+                app:itemTextColor="@drawable/bottom_icon_color"
                 app:labelVisibilityMode="labeled"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:menu="@menu/home_nav">
-
-            </com.google.android.material.bottomnavigation.BottomNavigationView>
+                app:menu="@menu/home_nav" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
