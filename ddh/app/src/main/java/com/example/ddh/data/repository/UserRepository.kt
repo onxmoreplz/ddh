@@ -10,8 +10,9 @@ interface UserRepository {
         fail: (Throwable) -> Unit
     )
 
-    fun postLogin(
-        loginHashMap: HashMap<String, String>,
+    fun getLogin(
+        email: String,
+        password: String,
         success: (SignUpUserData.LoginResponse) -> Unit,
         fail: (Throwable) -> Unit
     )

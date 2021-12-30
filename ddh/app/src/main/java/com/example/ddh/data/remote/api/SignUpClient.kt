@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * */
 
 object SignUpClient {
-    private const val baseUrl = "https://market-carrot.herokuapp.com/api/" //Base Url 주소 끝은 항상 '/'으로 끝나야 함
+    private const val baseUrl = "https://oleunaelim-server.herokuapp.com/api/" //Base Url 주소 끝은 항상 '/'으로 끝나야 함
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)

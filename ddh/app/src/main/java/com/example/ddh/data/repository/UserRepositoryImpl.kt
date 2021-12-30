@@ -14,12 +14,13 @@ class UserRepositoryImpl : UserRepository {
         userRemoteDataSource.postSignUpRemote(userInfo, success, fail)
     }
 
-    override fun postLogin(
-        loginHashMap: HashMap<String, String>,
+    override fun getLogin(
+        email: String,
+        password: String,
         success: (SignUpUserData.LoginResponse) -> Unit,
         fail: (Throwable) -> Unit
     ) {
-        userRemoteDataSource.postUserLoginRemote(loginHashMap, success, fail)
+        userRemoteDataSource.postUserLoginRemote(email, password, success, fail)
     }
 
     override fun postVerfyEmail(

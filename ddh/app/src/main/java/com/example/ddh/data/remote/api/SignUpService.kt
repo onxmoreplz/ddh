@@ -12,14 +12,15 @@ interface SignUpService {
         @FieldMap params: HashMap<String, String>
     ): Call<SignUpUserData.SignUpUserResponse>
 
-    @FormUrlEncoded // x-www-urlencoded로 보내겠다.
-    @POST("user/login")
-    fun postLoginUser(
-        @FieldMap params: HashMap<String, String>
+
+    @GET("user/login")
+    fun getLogin(
+        @Query("email") email: String,
+        @Query("password") password: String
     ): Call<SignUpUserData.LoginResponse>
 
-    @FormUrlEncoded
-    @POST("user/emailCheck")
+    @FormUrlEncoded // x-www-urlencoded로 보내겠다.
+    @POST("user/email")
     fun postVerifyEmail(
         @FieldMap params: HashMap<String, String>
     ): Call<SignUpUserData.VerifyingResponse>

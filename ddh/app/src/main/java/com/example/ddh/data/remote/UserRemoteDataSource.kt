@@ -35,11 +35,12 @@ class UserRemoteDataSource {
     }
 
     fun postUserLoginRemote(
-        loginHashMap: HashMap<String, String>,
+        email: String,
+        password: String,
         success: (SignUpUserData.LoginResponse) -> Unit,
         fail: (Throwable) -> Unit
     ) {
-        val call = SignUpClient.service.postLoginUser(loginHashMap)
+        val call = SignUpClient.service.getLogin(email, password)
         call.enqueue(object : Callback<SignUpUserData.LoginResponse> {
             override fun onResponse(call: Call<SignUpUserData.LoginResponse>, response: Response<SignUpUserData.LoginResponse>) {
                 if (response.isSuccessful) {
