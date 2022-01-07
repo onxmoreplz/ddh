@@ -11,15 +11,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="60dp"
             android:background="@color/white"
-            android:gravity="center_horizontal|bottom"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:orientation="horizontal">
 
                 <View
@@ -34,7 +33,7 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center"
                     android:text="마이페이지"
-                    android:textSize="21dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <View
@@ -61,12 +60,6 @@
                 android:orientation="vertical"
                 android:padding="4dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:layout_marginHorizontal="4dp"
-                    android:background="#EFEFEF" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
@@ -74,8 +67,8 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:src="@drawable/user" />
 
@@ -88,18 +81,20 @@
                         android:paddingVertical="16dp">
 
                         <TextView
-
+                            android:id="@+id/tv_user_nickname_my_page"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="클라이머, 함길동"
-                            android:textSize="20dp" />
+                            android:textSize="18dp" />
 
                         <TextView
+                            android:id="@+id/tv_user_email_my_page"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:text="hamgildong@gmail.com"
                             android:textColor="#AAAAAA"
@@ -155,9 +150,10 @@
                         android:layout_height="fill_parent"
                         android:gravity="right">
 
-                        <Button
+                        <TextView
                             android:layout_width="70dp"
                             android:layout_height="25dp"
+                            android:gravity="center"
                             android:layout_gravity="center_vertical|right"
                             android:background="@drawable/button_round_level_promotion"
                             android:text="등급혜택"
@@ -185,7 +181,7 @@
                     <Button
                         android:layout_width="20dp"
                         android:layout_height="17dp"
-                        android:background="@drawable/icon_paricipated"
+                        android:background="@drawable/icon_participated"
                         android:gravity="bottom|center_horizontal"
                         android:textSize="13dp" />
 
@@ -211,9 +207,9 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:layout_width="20dp"
-                        android:layout_height="17dp"
-                        android:background="@drawable/icon_my_upload_party"
+                        android:layout_width="15dp"
+                        android:layout_height="19dp"
+                        android:background="@drawable/icon_my_upload"
                         android:gravity="bottom|center_horizontal"
                         android:textSize="13dp" />
 
@@ -260,7 +256,8 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="4dp"
+                android:paddingBottom="40dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -270,7 +267,7 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical|left"
                     android:text="내 피드"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -287,7 +284,7 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical|left"
                     android:text="알림설정(마케팅)"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
 
                 <View
@@ -305,7 +302,7 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical|left"
                     android:text="백신접종여부"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
 
                 <View
@@ -323,7 +320,7 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical|left"
                     android:text="차단멤버관리"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -340,8 +337,7 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical|left"
                     android:text="약관 및 정책"
-                    android:textSize="16dp" />
-
+                    android:textSize="14dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -358,7 +354,13 @@
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center_vertical|left"
                     android:text="환경설정"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="#CCCCCC" />
 
             </LinearLayout>
         </LinearLayout>

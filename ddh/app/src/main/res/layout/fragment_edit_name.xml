@@ -120,7 +120,7 @@
                     android:layout_height="16dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/right_arrow"
+                    android:background="@drawable/icon_right_arrow"
                     android:gravity="center" />
             </LinearLayout>
         </LinearLayout>

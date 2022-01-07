@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:icon="@drawable/icon_home"
+        android:icon="@drawable/icon_nav_home"
         android:title="홈" />
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/icon_search_navigation"
-        android:title="모임 찾기" />
+        android:icon="@drawable/icon_nav_map"
+        android:title="지도" />
 
     <item
         android:id="@+id/feed"
-        android:icon="@drawable/icon_feed"
+        android:icon="@drawable/icon_nav_feed"
         android:title="피드" />
 
     <item
         android:id="@+id/chat"
-        android:icon="@drawable/icon_chat"
+        android:icon="@drawable/icon_nav_chat"
         android:title="채팅" />
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/icon_profile"
+        android:icon="@drawable/icon_nav_mypage"
         android:title="마이페이지" />
 
 </menu>
