@@ -9,6 +9,7 @@ import com.example.ddh.data.repository.UserRepositoryImpl
 class LoginViewModel(
     private val userRepository: UserRepositoryImpl
 ) {
+    private val hashMapLogin = HashMap<String, String>()
     private val _email = MutableLiveData<String>()
     private val _password = MutableLiveData<String>()
 
@@ -22,9 +23,10 @@ class LoginViewModel(
     val failLogin = ObservableField<Unit>()
 
     fun getUserLoginInfo() {
-        userRepository.getLogin(
-            email.toString()!!,
-            password.toString()!!,
+        hashMapLogin["email"] = email.toString()!!
+        hashMapLogin["password"] = password.toString()!!
+        userRepository.postLogin(
+            hashMapLogin,
             success = {
                 it.run {
                     when (code) {
@@ -37,9 +39,8 @@ class LoginViewModel(
                         1003 -> print(23)
                     }
                 }
-            },
-            fail = {}
-        )
+            }
+        ) {}
     }
 
 }

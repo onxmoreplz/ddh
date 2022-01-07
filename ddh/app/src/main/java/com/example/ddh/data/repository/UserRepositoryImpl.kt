@@ -4,7 +4,23 @@ import com.example.ddh.data.dto.SignUpUserData
 import com.example.ddh.data.remote.UserRemoteDataSource
 
 class UserRepositoryImpl : UserRepository {
-    private val userRemoteDataSource =  UserRemoteDataSource()
+    private val userRemoteDataSource = UserRemoteDataSource()
+
+    override fun getVerfyEmail(
+        email: String,
+        success: (SignUpUserData.VerifyEmailResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        userRemoteDataSource.getVerifyingEmail(email, success, fail)
+    }
+
+    override fun getNicknameCheck(
+        nickname: String,
+        success: (SignUpUserData.CheckNicknameResponse) -> Unit,
+        fail: (Throwable) -> Unit)
+    {
+        userRemoteDataSource.getCheckNickname(nickname, success, fail)
+    }
 
     override fun postSignUp(
         userInfo: HashMap<String, String>,
@@ -14,21 +30,13 @@ class UserRepositoryImpl : UserRepository {
         userRemoteDataSource.postSignUpRemote(userInfo, success, fail)
     }
 
-    override fun getLogin(
-        email: String,
-        password: String,
+    override fun postLogin(
+        hashMapLogin: HashMap<String, String>,
         success: (SignUpUserData.LoginResponse) -> Unit,
         fail: (Throwable) -> Unit
     ) {
-        userRemoteDataSource.postUserLoginRemote(email, password, success, fail)
+        userRemoteDataSource.postUserLoginRemote(hashMapLogin, success, fail)
     }
 
-    override fun postVerfyEmail(
-        verifyHashmap: HashMap<String, String>,
-        success: (SignUpUserData.VerifyingResponse) -> Unit,
-        fail: (Throwable) -> Unit
-    ) {
-        userRemoteDataSource.postVerifyingCode(verifyHashmap, success, fail)
-    }
 
 }
