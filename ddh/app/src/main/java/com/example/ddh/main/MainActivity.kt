@@ -9,14 +9,14 @@ import com.example.ddh.R
 import com.example.ddh.databinding.ActivityMainBinding
 import com.example.ddh.main.fragment.home.HomeFragment
 import com.example.ddh.main.fragment.mypage.MypageFragment
-import com.example.ddh.main.fragment.search.SearchFragment
+import com.example.ddh.upload.MapFragment
 
 class MainActivity : FragmentActivity() {
 
     private lateinit var databinding: ActivityMainBinding
 
     private val homeFragment by lazy { HomeFragment() }
-    private val searchFragment by lazy { SearchFragment() }
+    private val mapFragment by lazy { MapFragment() }
     private val mypageFragment by lazy { MypageFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +38,10 @@ class MainActivity : FragmentActivity() {
                         replaceFragmentAddToBackStack(homeFragment)
                     }
                     R.id.chat -> {
-                        replaceFragmentAddToBackStack(searchFragment)
+                        replaceFragmentAddToBackStack(mapFragment)
                     }
                     R.id.search -> {
-                        replaceFragmentAddToBackStack(searchFragment)
+                        replaceFragmentAddToBackStack(mapFragment)
                     }
                     R.id.profile -> {
                         replaceFragmentAddToBackStack(mypageFragment)
@@ -61,7 +61,7 @@ class MainActivity : FragmentActivity() {
     fun replaceFragmentAddToBackStack(fragment: Fragment) {
         val manager: FragmentManager = supportFragmentManager
         manager.beginTransaction()
-            .replace(R.id.fl_container, fragment)
+            .replace(R.id.fl_container_main, fragment)
             .addToBackStack(null)
             .commit()
     }
@@ -69,7 +69,7 @@ class MainActivity : FragmentActivity() {
     fun replaceFragmentNoBackStack(fragment: Fragment) {
         val manager: FragmentManager = supportFragmentManager
         manager.beginTransaction()
-            .replace(R.id.fl_container, fragment)
+            .replace(R.id.fl_container_main, fragment)
             .commit()
     }
 
