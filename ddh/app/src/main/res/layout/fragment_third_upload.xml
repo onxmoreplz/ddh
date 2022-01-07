@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:gravity="center"
+                android:text="언제 만나나요?"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="40dp"
+                android:paddingBottom="16dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/background_underline"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/icon_date_to_meet" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#AAAAAA"
+                    android:gravity="center_vertical"
+                    android:hint="날짜"
+                    android:background="#00123456"
+                    android:layout_marginLeft="16dp"
+                    android:imeOptions="actionDone"
+                    android:maxLength="25"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="16dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/background_underline"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/icon_time_to_meet" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#AAAAAA"
+                    android:gravity="center_vertical"
+                    android:hint="시간"
+                    android:background="#00123456"
+                    android:layout_marginLeft="16dp"
+                    android:imeOptions="actionDone"
+                    android:maxLength="25"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="19dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/icon_fee_to_meet" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="참가비"
+                        android:textColor="#AAAAAA"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_free"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_round_id_password"
+                        android:text="무료"
+                        android:textColor="#BCBCBC"
+                        android:textSize="10dp" />
+
+                    <Button
+                        android:id="@+id/btn_not_free"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_round_id_password"
+                        android:text="유료"
+                        android:textColor="#BCBCBC"
+                        android:textSize="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_not_free"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actv_minimum"
+                            android:layout_width="75dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="-3dp"
+                            android:backgroundTint="#AAAAAA"
+                            android:drawablePadding="2dp"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="7"
+                            android:singleLine="true"
+                            android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/background_round_upload_edittext"
+                        android:gravity="top"
+                        android:hint="참가비에 포함된 내용을 적어주세요."
+                        android:maxLength="50"
+                        android:lineSpacingExtra="6dp"
+                        android:padding="16dp"
+                        android:scrollbars="vertical"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</layout>
