@@ -6,22 +6,19 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.CompoundButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.ddh.R
 import com.example.ddh.data.repository.UserRepositoryImpl
 import com.example.ddh.databinding.ActivitySignUpEmailBinding
+import com.example.ddh.main.MainActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
-import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
 
@@ -38,11 +35,10 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private lateinit var mCountDownTimer: CountDownTimer
     private var imageBtnClicked: Boolean = false
-    private lateinit var tvTimer: TextView
-    private lateinit var emailVerifyingCode: String
     private var _millisUntilFinished: Long = 0L
-    private var gender: String = "남자"
     private var isFirstPasswordInput = false
+    private var isEmailVerified = false
+    private var isNicknameUsable = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +47,6 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
         dataBinding.vm = signUpViewmodel
 
         setButtons()
-        setRadioGroup()
         setImageBtn()
         setCheckBox()
         setAgreementsDescriptionBtn()
@@ -64,11 +59,12 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             RxTextView.textChanges(dataBinding.etSignUpFirstPw),
             RxTextView.textChanges(dataBinding.etSignUpSecondPw),
             RxTextView.textChanges(dataBinding.etSignUpName),
+            RxTextView.textChanges(dataBinding.etSignUpNickname),
             RxTextView.textChanges(dataBinding.etSignUpPhoneNumber),
 //            RxTextView.textChanges(dataBinding.etSignUpBirth),
-            { rxEmail, rxPassword1, rxPassword2, rxName, rxPhone ->
+            { rxEmail, rxPassword1, rxPassword2, rxName, rxNickname, rxPhone ->
 
-                checkEmail(rxEmail); checkFirstPassword(rxPassword1); checksecondPassword(rxPassword2); checkname(rxName); checkPhoneNumber(rxPhone);
+                checkEmail(rxEmail); checkFirstPassword(rxPassword1); checksecondPassword(rxPassword2); checkname(rxName); checkNickname(rxNickname); checkPhoneNumber(rxPhone)
                 if (isFirstPasswordInput) {
                     if (checkFirstAndSecondPassword(rxPassword1) && checkEmail(rxEmail) && checkFirstPassword(rxPassword1) && checksecondPassword(rxPassword2) && checkname(rxName) && checkPhoneNumber(rxPhone)
                     ) {
@@ -142,11 +138,9 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         if (dataBinding.cbUsing.isChecked && dataBinding.cbPrivate.isChecked && dataBinding.cbMarketing.isChecked) {
             dataBinding.ibCheckAll.setImageResource(R.drawable.icon_red_check)
-            dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(221, 221, 221))
-            userInfoHashMap["personalInformation"] = "true"
+//            dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(203, 61, 61))
         } else {
             dataBinding.ibCheckAll.setImageResource(R.drawable.icon_agreement)
-            userInfoHashMap["personalInformation"] = "false"
         }
     }
 
@@ -214,6 +208,12 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
                 dataBinding.tvPhoneVaildCheck.visibility = View.GONE
             }
             return false
+        }
+    }
+
+    private fun checkNickname(s: CharSequence?) {
+        if(s!!.length > 2) {
+            dataBinding.btnCheckNickname.isEnabled = true
         }
     }
 
@@ -298,7 +298,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
         }
     }
 
-    private fun checkVerifyingCode(): Boolean {
+/*    private fun checkVerifyingCode(): Boolean {
         if (_millisUntilFinished >= 0) {
             if (dataBinding.edtSignUpVerifyEmail.text.toString() == this.emailVerifyingCode) {
                 userInfoHashMap["email"] = dataBinding.etSignUpEmail.text.toString()
@@ -321,21 +321,21 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             Toast.makeText(context, "시간이 초과되었습니다. 다시 인증코드를 받으세요.", Toast.LENGTH_SHORT).show()
             return false
         }
-    }
+    }*/
 
     private fun checkEmail(s: CharSequence?): Boolean {
         val emailRegEx = "^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+\$"
         return if (Pattern.matches(emailRegEx, s)) {
             dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextGrey)
             dataBinding.tvEmailVaildCheck.visibility = View.GONE
-            dataBinding.btnRequestCode.isEnabled = true
+            dataBinding.btnVerifyEmail.isEnabled = true
             true
         } else {
             if (s!!.isNotEmpty()) {
                 dataBinding.tvEmailVaildCheck.text = "올바른 이메일 형식이 아닙니다"
                 dataBinding.tvEmailVaildCheck.visibility = View.VISIBLE
                 dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
-                dataBinding.btnRequestCode.isEnabled = false
+                dataBinding.btnVerifyEmail.isEnabled = false
             } else {
                 dataBinding.tvEmailVaildCheck.visibility = View.GONE
                 dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorEditTextGrey)
@@ -346,34 +346,46 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private fun setButtons() {
         // [인증요청] 버튼
-        tvTimer = dataBinding.tvTimer
-        dataBinding.btnRequestCode.isClickable = false
-        dataBinding.btnRequestCode.setOnClickListener {
+        dataBinding.btnVerifyEmail.isClickable = false
+
+        /** 이벤트 리스너 등록 */
+        dataBinding.btnVerifyEmail.setOnClickListener {
             val verifyEmailHashMap = HashMap<String, String>()
-            verifyEmailHashMap["email"] = dataBinding.etSignUpEmail.text.toString()
-            Log.d("POST Verify Email", verifyEmailHashMap["email"].toString())
-            userRepository.postVerfyEmail(
-                verifyEmailHashMap,
+            Log.d("[GET] Verify Email", verifyEmailHashMap["email"].toString())
+            userRepository.getVerfyEmail(
+                dataBinding.etSignUpEmail.text.toString(),
                 success = {
                     it.run {
-                        if (it.code == 0) {
-                            emailVerifyingCode = it.data!!.code!!
-                            dataBinding.btnRequestCode.text = "재전송"
-                            dataBinding.llVerifyCodeFromEmail.visibility = View.VISIBLE
-                            dataBinding.etSignUpEmail.setTypeface(null, Typeface.BOLD_ITALIC)
-                            dataBinding.etSignUpEmail.isEnabled = false
+                        var builder = AlertDialog.Builder(context)
+                        builder.setTitle("이메일 중복확인")
+                        when (code) {
+                            0 -> {
+                                builder.setMessage("사용가능한 이메일입니다.")
+                                var listener = DialogInterface.OnClickListener { _, p1 ->
+                                    when (p1) {
+                                        DialogInterface.BUTTON_POSITIVE -> {
+                                            dataBinding.etSignUpEmail.isEnabled = false
+                                            isEmailVerified = true
+                                        }
+                                    }
+                                }
+                                builder.setPositiveButton("사용하기", listener)
+                                builder.show()
 
-                            Log.d("POST Verifying Success", "Verifying code : ${it.data!!.code!!}")
-                            setTimer()
-                        } else {
-                            val emailVerifyingDialogue = AlertDialog.Builder(context)
-                            emailVerifyingDialogue.setTitle("이메일 중복확인")
-                            emailVerifyingDialogue.setMessage(it.data!!.message)
-                            emailVerifyingDialogue.setNeutralButton("닫기") { _: DialogInterface, i: Int ->
                             }
-                            emailVerifyingDialogue.show()
+                            1001 -> {
+                                builder.setMessage("이미 사용중인 이메일입니다.")
+                                var listener = DialogInterface.OnClickListener { _, p1 ->
+                                    when (p1) {
+                                        DialogInterface.BUTTON_POSITIVE -> {
+                                        }
+                                    }
+                                }
+                                builder.setPositiveButton("닫기", listener)
+                                builder.show()
 
-                            Log.d("POST Verifying Wrong", "Error Code :${it.code}")
+                                Log.d("POST Verifying Wrong", "Error Code :${it.code}")
+                            }
                         }
                     }
                 },
@@ -384,47 +396,91 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             )
         }
 
-        // [인증 확인] 버튼
-        dataBinding.btnVerifyCode.setOnClickListener {
-            checkVerifyingCode()
+        // [중복확인] 닉네임
+        dataBinding.btnCheckNickname.setOnClickListener {
+            userRepository.getNicknameCheck(
+                dataBinding.etSignUpNickname.text.toString(),
+                success = {
+                    it.run {
+                        var builder = AlertDialog.Builder(context)
+                        builder.setTitle("닉네임 중복확인")
+                        when (code) {
+                            0 -> {
+                                builder.setMessage("사용가능한 닉네임입니다.")
+                                var listener = DialogInterface.OnClickListener { _, p1 ->
+                                    when (p1) {
+                                        DialogInterface.BUTTON_POSITIVE -> {
+                                            isNicknameUsable = true
+                                            dataBinding.etSignUpNickname.isEnabled = false
+                                        }
+                                    }
+                                }
+                                builder.setPositiveButton("사용하기", listener)
+                                builder.show()
+
+                            }
+                            1006 -> {
+                                builder.setMessage("이미 사용중인 이메일입니다.")
+                                var listener = DialogInterface.OnClickListener { _, p1 ->
+                                    when (p1) {
+                                        DialogInterface.BUTTON_POSITIVE -> {
+                                        }
+                                    }
+                                }
+                                builder.setPositiveButton("닫기", listener)
+                                builder.show()
+
+                                Log.d("POST Verifying Wrong", "Error Code :${it.code}")
+                            }
+                        }
+                    }
+                },
+                fail = {
+
+                }
+            )
         }
 
-        // [DDH 시작하기] 버튼
+        // [가입하기] 버튼
         dataBinding.btnSignUp.setOnClickListener {
-            if (checkVerifyingCode()) {
-                if (dataBinding.cbMarketing.isChecked && dataBinding.cbMarketing.isChecked && dataBinding.cbMarketing.isChecked) {
-                    dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(221, 221, 221))
-                    dataBinding.btnSignUp.isEnabled = true
-                    userInfoHashMap["email"] = dataBinding.etSignUpEmail.text.toString()
-                    userInfoHashMap["password"] = dataBinding.etSignUpSecondPw.text.toString()
-                    userInfoHashMap["name"] = dataBinding.etSignUpName.text.toString()
-//                    userInfoHashMap["birthday"] = dataBinding.etSignUpBirth.text.toString()
-                    userInfoHashMap["tel"] = dataBinding.etSignUpPhoneNumber.text.toString()
-                    userInfoHashMap["gender"] = gender
-                    userInfoHashMap["recommendedCode"] = "" // 임시로 갖고 있음.
-                    userRepository.postSignUp(
-                        userInfoHashMap,
-                        success = {
-                            it.run {
-                                val intent = Intent(this@SignUpEmailActivity, SignUpCompleteActivity::class.java)
-                                intent.putExtra("username", it.data!!.name)
-                                startActivity(intent)
+            if (isEmailVerified) {
+                if (isNicknameUsable) {
+                    if (dataBinding.cbMarketing.isChecked && dataBinding.cbMarketing.isChecked && dataBinding.cbMarketing.isChecked) {
+                        dataBinding.lineOfCheckbox.setBackgroundColor(Color.rgb(221, 221, 221))
+                        dataBinding.btnSignUp.isEnabled = true
+                        userInfoHashMap["email"] = dataBinding.etSignUpEmail.text.toString()
+                        userInfoHashMap["password"] = dataBinding.etSignUpSecondPw.text.toString()
+                        userInfoHashMap["name"] = dataBinding.etSignUpName.text.toString()
+                        userInfoHashMap["nickName"] = dataBinding.etSignUpNickname.text.toString()
+                        userInfoHashMap["tel"] = dataBinding.etSignUpPhoneNumber.text.toString()
+                        userRepository.postSignUp(
+                            userInfoHashMap,
+                            success = {
+                                it.run {
+                                    val intent = Intent(this@SignUpEmailActivity, MainActivity::class.java)
+                                    intent.putExtra("username", it.data!!.email)
+                                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                                    finish()
+                                }
+                                Log.d("Button Sign Up", "Success to SignUp")
+                            },
+                            fail = {
+                                Toast.makeText(this@SignUpEmailActivity, "${it.message}", Toast.LENGTH_SHORT).show()
+                                Log.d("Post Sign Up Method", it.message.toString())
                             }
-                            Log.d("Button Sign Up", "Succee to SignUp")
-                        },
-                        fail = {
-                            Toast.makeText(this@SignUpEmailActivity, "${it.message}", Toast.LENGTH_SHORT).show()
-                            Log.d("Post Sign Up Method", it.message.toString())
-                        }
 
-                    )
-                } else { // 이용약관 동의 체크하지 않은 경우
-                    dataBinding.lineOfCheckbox.setBackgroundColor(Color.argb(239, 221, 34, 34))
-                    Toast.makeText(context, "이용약관에 동의 해주세요.", Toast.LENGTH_SHORT).show()
+                        )
+                    } else { // 이용약관 동의 체크하지 않은 경우
+                        dataBinding.lineOfCheckbox.setBackgroundColor(Color.argb(239, 221, 34, 34))
+                        Toast.makeText(context, "이용약관에 동의 해주세요.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(context, "사용하실 닉네임 중복확인이 필요합니다.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(context, "이메일이 인증이 필요합니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "이메일 인증이 필요합니다.", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         //[뒤로가기 <-] 버튼
@@ -435,7 +491,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     }
 
-    private fun setTimer() {
+/*    private fun setTimer() {
         val dateFormat = SimpleDateFormat("mm:ss")
         mCountDownTimer = object : CountDownTimer(300 * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -448,6 +504,6 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             }
 
         }.start()
-    }
+    }*/
 
 }

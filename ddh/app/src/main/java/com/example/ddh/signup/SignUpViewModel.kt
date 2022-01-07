@@ -31,7 +31,6 @@ class SignUpViewModel(
         userInfoHashMap["birthday"] = "1995-02-28"
         userInfoHashMap["tel"] = "01041527671"
         userInfoHashMap["gender"] = "남자"
-        userInfoHashMap["personalInformation"] = "true"
         userInfoHashMap["recommendedCode"] = ""
 
         if (userInfoHashMap.isEmpty()) {
@@ -40,7 +39,7 @@ class SignUpViewModel(
                 userInfoHashMap,
                 success = {
                     it.run {
-                        signUpResultUsername = it.data!!.name
+                        signUpResultUsername = it.data!!.email
 
                         if (!signUpResultUsername.isNullOrEmpty()) {
                             startSignUpCompleteActivity.notifyChange()
