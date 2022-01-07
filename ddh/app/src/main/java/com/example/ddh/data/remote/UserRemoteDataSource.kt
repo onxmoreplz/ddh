@@ -11,6 +11,46 @@ import kotlin.collections.HashMap
 
 class UserRemoteDataSource {
 
+    fun getVerifyingEmail(
+        email: String,
+        success: (SignUpUserData.VerifyEmailResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        val call = SignUpClient.service.getVerifyEmail(email)
+        call.enqueue(object : Callback<SignUpUserData.VerifyEmailResponse> {
+            override fun onResponse(call: Call<SignUpUserData.VerifyEmailResponse>, response: Response<SignUpUserData.VerifyEmailResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { success(it) }
+                } else {
+                    Log.d("UserRemoteDataSource", "Something goes wrong : ${response.errorBody()}")
+                }
+            }
+            override fun onFailure(call: Call<SignUpUserData.VerifyEmailResponse>, t: Throwable) {
+                fail(t)
+            }
+        })
+    }
+
+    fun getCheckNickname(
+        nickname: String,
+        success: (SignUpUserData.CheckNicknameResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        val call = SignUpClient.service.getCheckNickname(nickname)
+        call.enqueue(object : Callback<SignUpUserData.CheckNicknameResponse> {
+            override fun onResponse(call: Call<SignUpUserData.CheckNicknameResponse>, response: Response<SignUpUserData.CheckNicknameResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { success(it) }
+                } else {
+                    Log.d("UserRemoteDataSource", "Something goes wrong : ${response.errorBody()}")
+                }
+            }
+            override fun onFailure(call: Call<SignUpUserData.CheckNicknameResponse>, t: Throwable) {
+                fail(t)
+            }
+        })
+    }
+
     fun postSignUpRemote(
         userInfo: HashMap<String, String>,
         success: (SignUpUserResponse) -> Unit,
@@ -35,12 +75,11 @@ class UserRemoteDataSource {
     }
 
     fun postUserLoginRemote(
-        email: String,
-        password: String,
+        hashMapLogin: HashMap<String, String>,
         success: (SignUpUserData.LoginResponse) -> Unit,
         fail: (Throwable) -> Unit
     ) {
-        val call = SignUpClient.service.getLogin(email, password)
+        val call = SignUpClient.service.postLogin(hashMapLogin)
         call.enqueue(object : Callback<SignUpUserData.LoginResponse> {
             override fun onResponse(call: Call<SignUpUserData.LoginResponse>, response: Response<SignUpUserData.LoginResponse>) {
                 if (response.isSuccessful) {
@@ -53,23 +92,5 @@ class UserRemoteDataSource {
         })
     }
 
-    fun postVerifyingCode(
-        verifyingHashMap: HashMap<String, String>,
-        success: (SignUpUserData.VerifyingResponse) -> Unit,
-        fail: (Throwable) -> Unit
-    ) {
-        val call = SignUpClient.service.postVerifyEmail(verifyingHashMap)
-        call.enqueue(object : Callback<SignUpUserData.VerifyingResponse> {
-            override fun onResponse(call: Call<SignUpUserData.VerifyingResponse>, response: Response<SignUpUserData.VerifyingResponse>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { success(it) }
-                } else {
-                    Log.d("UserRemoteDataSource", "Something goes wrong : ${response.errorBody()}")
-                }
-            }
-            override fun onFailure(call: Call<SignUpUserData.VerifyingResponse>, t: Throwable) {
-                fail(t)
-            }
-        })
-    }
+
 }
