@@ -3,9 +3,11 @@ package com.example.ddh.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.ddh.App
 import com.example.ddh.R
 import com.example.ddh.data.repository.UserRepositoryImpl
 import com.example.ddh.databinding.ActivityLocalLoginBinding
@@ -26,8 +28,7 @@ class LocalLoginActivity : Activity() {
     private var isEmailValid: Boolean = false
     private var isPasswordValid: Boolean = false
 
-    private var etEmail: String = ""
-    private var etPassword: String = ""
+    private var loginHashMap = HashMap<String, String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Ddh)// 스플래시로 인해 변경되었던 Theme 되돌림
@@ -39,6 +40,18 @@ class LocalLoginActivity : Activity() {
 //        setObserveViewModelEvent()
         setSocialLoginBtn()
         setBtnAndTextview()
+
+        checkLoginCheckbox()
+    }
+
+    private fun checkLoginCheckbox() {
+        if(App.sharedPrefs.getCheckBoxLoginInfo()!!) {
+            databinding.etEmail.setText(App.sharedPrefs.getUserEmail())
+            databinding.etPw.setText(App.sharedPrefs.getUserPassword())
+            databinding.chSaveLoginInfo.isChecked = true
+        } else {
+            databinding.chSaveLoginInfo.isChecked = false
+        }
     }
 
     private fun setSocialLoginBtn() {
@@ -80,7 +93,7 @@ class LocalLoginActivity : Activity() {
                 }
             } else if (token != null) {
                 val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
                 finish()
             }
         }
@@ -101,12 +114,18 @@ class LocalLoginActivity : Activity() {
 
     private fun setBtnAndTextview() {
         // [로그인] 버튼
+        var email: String? = ""
+        var password: String? = ""
         databinding.btnLogin.setOnClickListener {
             if (databinding.etEmail.toString().isNotEmpty()) {
                 if (databinding.etPw.toString().isNotEmpty()) {
-                    etEmail = databinding.etEmail.text.toString().trim()
-                    etPassword = databinding.etPw.text.toString().trim()
-                    postUserLogin(etEmail, etPassword)
+                    email = databinding.etEmail.text.toString().trim()
+                    password = databinding.etPw.text.toString().trim()
+                    loginHashMap["email"] = email!!
+                    loginHashMap["password"] = password!!
+
+                    postUserLogin(loginHashMap)
+                    checkBoxLoginInfo()
                 } else {
                     Toast.makeText(this@LocalLoginActivity, "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
                 }
@@ -130,18 +149,44 @@ class LocalLoginActivity : Activity() {
         }
     }
 
-    private fun postUserLogin(email: String, password: String) {
-        userRepository.getLogin(
-            email,
-            password,
+    private fun checkBoxLoginInfo() {
+        if (databinding.chSaveLoginInfo.isChecked) {
+            App.sharedPrefs.setCheckBoxLoginInfo(true)
+        } else {
+            App.sharedPrefs.setCheckBoxLoginInfo(false)
+        }
+    }
+
+    private fun postUserLogin(hashMapLogin: HashMap<String, String>) {
+        userRepository.postLogin(
+            hashMapLogin,
             success = {
                 it.run {
                     when (code) {
                         0 -> { // 로그인 성공
-                            val loginUserName: String = it.data!!.name!!
-                            val bundle: Bundle
+                            App.sharedPrefs.setUserEmail(it.data!!.email!!)
+                            App.sharedPrefs.setUserPassword(databinding.etPw.text.toString())
+                            App.sharedPrefs.setUserName(it.data!!.name!!)
+                            App.sharedPrefs.setUserNickname(it.data!!.nickName!!)
+                            App.sharedPrefs.setUserTel(it.data!!.tel!!)
+                            App.sharedPrefs.setUserAccessToken(it.data!!.accessToken!!)
+                            App.sharedPrefs.setUserRefreshToken(it.data!!.refreshToken!!)
+
                             val intent = Intent(this@LocalLoginActivity, MainActivity::class.java)
-                            startActivity(intent)
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                            finish()
+                        }
+                        1001 -> {// 등록된 계정이 없음
+                            Toast.makeText(this@LocalLoginActivity, it.data!!.message, Toast.LENGTH_SHORT).show()
+                        }
+                        1002 -> {// 비밀번호 불일치
+                            Toast.makeText(this@LocalLoginActivity, it.data!!.message, Toast.LENGTH_SHORT).show()
+                        }
+                        1003 -> {//회원 잠김
+                          Toast.makeText(this@LocalLoginActivity, it.data!!.message, Toast.LENGTH_SHORT).show()
+                        }
+                        1009 -> {//이메일 미인증 상태 계정
+                            //TODO : 다이얼로그 만들 예정
                         }
                         else -> {
                             Toast.makeText(this@LocalLoginActivity, it.data!!.message, Toast.LENGTH_SHORT).show()
@@ -149,10 +194,12 @@ class LocalLoginActivity : Activity() {
                     }
 
                 }
-            },
-            fail = {
-                Log.e("postUserLogin", "Fail to Login : ${it.message}")
             }
-        )
+        ) {
+            Log.e("postUserLogin", "Fail to Login : ${it.message}")
+            if( it.message == "timeout") {
+                Toast.makeText(this@LocalLoginActivity, "인터넷 연결이 불안정합니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
