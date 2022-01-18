@@ -18,6 +18,8 @@ class PartyParticipantAdapter (
     private lateinit var view: View
     private var participants = participants
 
+    private val LIMIT_OF_SIZE = 8
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartyParticipantAdapter.PartyParticipantViewHolder {
         view = LayoutInflater.from(parent.context).inflate(
             R.layout.item_party_participant_profile_pic,
@@ -34,16 +36,16 @@ class PartyParticipantAdapter (
     }
 
     override fun getItemCount(): Int {
-        return participants.size
+        return if (participants.size >= LIMIT_OF_SIZE ) LIMIT_OF_SIZE
+        else
+            participants.size
     }
 
     inner class PartyParticipantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val civProfilePic = itemView.findViewById<CircleImageView>(R.id.civ_participant_profile_pic)
-        private val tvNickname = itemView.findViewById<TextView>(R.id.tv_participant_nickname)
 
         fun bind(user: SignUpUserData.User) {
-            tvNickname.text = user.nickName
             try {
                 Glide.with(view)
                     .load(user.profilePicUrl)
