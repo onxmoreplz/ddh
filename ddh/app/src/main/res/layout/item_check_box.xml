@@ -10,7 +10,7 @@
         android:layout_gravity="left|center_vertical"
         android:layout_marginRight="32dp"
         android:textSize="12dp"
-        android:theme="@style/CustomRadioButton" />
+        android:theme="@style/RadioButtonAgreement" />
 
     <LinearLayout
         android:layout_width="fill_parent"

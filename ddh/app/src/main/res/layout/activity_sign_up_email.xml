@@ -64,13 +64,37 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="35dp"
+                    android:gravity="center_vertical"
+                    android:text="이름"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+
+                <EditText
+                    android:id="@+id/et_sign_up_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#AAAAAA"
+                    android:gravity="center_vertical"
+                    android:hint="비밀번호를 확인해주세요"
+                    android:inputType="textPassword"
+                    android:maxLength="35"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                    android:textSize="13dp" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_vertical"
                     android:text="아이디(이메일 주소)"
                     android:textSize="14dp"
                     android:textStyle="bold" />
@@ -91,6 +115,7 @@
                         android:hint="이메일 주소를 입력해주세요"
                         android:maxLength="35"
                         android:singleLine="true"
+                        android:layout_marginRight="4dp"
                         android:text="@{vm.etEmail}"
                         android:textCursorDrawable="@drawable/edittext_cursor_grey"
                         android:textSize="13dp" />
@@ -105,7 +130,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_round_verify_email"
                         android:enabled="false"
-                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center"
                         android:paddingVertical="2dp"
                         android:text="인증요청"
@@ -194,9 +218,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="3dp"
                     android:text="비밀번호"
                     android:textSize="14dp"
                     android:textStyle="bold" />
@@ -227,10 +251,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
                     android:text="비밀번호 확인"
-                    android:layout_marginLeft="3dp"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -258,30 +282,6 @@
                     android:textSize="13dp"
                     android:visibility="gone" />
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="3dp"
-                    android:text="이름"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-
-                <EditText
-                    android:id="@+id/et_sign_up_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#AAAAAA"
-                    android:gravity="center_vertical"
-                    android:hint="실명을 입력해주세요"
-                    android:maxLength="35"
-                    android:singleLine="true"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
-                    android:textSize="13dp" />
-
                 <TextView
                     android:id="@+id/tv_name_vaild_check"
                     android:layout_width="match_parent"
@@ -296,10 +296,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
                     android:text="닉네임"
-                    android:layout_marginLeft="3dp"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -312,7 +312,7 @@
                     <EditText
                         android:id="@+id/et_sign_up_nickname"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="4"
                         android:backgroundTint="#AAAAAA"
                         android:gravity="center_vertical"
@@ -332,7 +332,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_round_verify_email"
                         android:enabled="false"
-                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:gravity="center"
                         android:paddingVertical="2dp"
                         android:text="중복확인"
@@ -353,10 +352,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
                     android:text="휴대폰번호"
-                    android:layout_marginLeft="3dp"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -366,14 +365,64 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#AAAAAA"
+                    android:digits="0123456789"
                     android:gravity="center_vertical"
                     android:hint="'-'구분없이 입력해주세요"
-                    android:digits="0123456789"
                     android:inputType="phone"
                     android:maxLength="13"
                     android:singleLine="true"
                     android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:textSize="13dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="성별"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/radio_btn_man"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:checked="true"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:text="남"
+                            android:textAlignment="center"
+                            android:textSize="13dp"
+                            android:theme="@style/RadioButtonGender" />
+
+                        <RadioButton
+                            android:id="@+id/radio_btn_woman"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:checked="false"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:text="여"
+                            android:textAlignment="center"
+                            android:textSize="13dp"
+                            android:theme="@style/RadioButtonGender" />
+                    </RadioGroup>
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tv_phone_vaild_check"
@@ -493,7 +542,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/layout_border"
                     android:orientation="vertical">
@@ -538,7 +587,7 @@
                             android:layout_gravity="left|center_vertical"
                             android:layout_marginLeft="4dp"
                             android:textSize="12dp"
-                            android:theme="@style/CustomRadioButton" />
+                            android:theme="@style/RadioButtonAgreement" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -579,7 +628,7 @@
                             android:layout_gravity="left|center_vertical"
                             android:layout_marginLeft="4dp"
                             android:textSize="12dp"
-                            android:theme="@style/CustomRadioButton" />
+                            android:theme="@style/RadioButtonAgreement" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -620,7 +669,7 @@
                             android:layout_gravity="left|center_vertical"
                             android:layout_marginLeft="4dp"
                             android:textSize="12dp"
-                            android:theme="@style/CustomRadioButton" />
+                            android:theme="@style/RadioButtonAgreement" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -656,13 +705,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/button_round_sign_up_enabled"
                     android:enabled="false"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:gravity="center"
                     android:text="가입하기"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="20dp"
                     android:textSize="14dp" />
                 <!--                    android:onClick="@{()->vm.signUpBtnClick()}"-->
 

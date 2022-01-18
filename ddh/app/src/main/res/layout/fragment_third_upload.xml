@@ -29,24 +29,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="40dp"
-                android:paddingBottom="16dp"
-                android:gravity="center_vertical"
                 android:background="@drawable/background_underline"
-                android:orientation="horizontal">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_calendar"
                     android:layout_width="19dp"
                     android:layout_height="16dp"
                     android:src="@drawable/icon_date_to_meet" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/tv_calender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:background="#00123456"
                     android:backgroundTint="#AAAAAA"
                     android:gravity="center_vertical"
                     android:hint="날짜"
-                    android:background="#00123456"
-                    android:layout_marginLeft="16dp"
                     android:imeOptions="actionDone"
                     android:maxLength="25"
                     android:singleLine="true"
@@ -59,24 +61,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:paddingBottom="16dp"
-                android:gravity="center_vertical"
                 android:background="@drawable/background_underline"
-                android:orientation="horizontal">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
 
                 <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="16dp"
+                    android:id="@+id/iv_time_to_meet"
+                    android:layout_width="14dp"
+                    android:layout_height="13dp"
                     android:src="@drawable/icon_time_to_meet" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/tv_time_to_meet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:background="#00123456"
                     android:backgroundTint="#AAAAAA"
                     android:gravity="center_vertical"
                     android:hint="시간"
-                    android:background="#00123456"
-                    android:layout_marginLeft="16dp"
                     android:imeOptions="actionDone"
                     android:maxLength="25"
                     android:singleLine="true"
@@ -98,100 +102,108 @@
 
                     <ImageView
                         android:layout_width="19dp"
-                        android:layout_height="16dp"
+                        android:layout_height="match_parent"
                         android:src="@drawable/icon_fee_to_meet" />
 
                     <TextView
+                        android:id="@+id/tv_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:text="참가비"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#232323"
                         android:textSize="14dp" />
 
                 </LinearLayout>
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/rg_fee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_free"
+                    <RadioButton
+                        android:id="@+id/radio_btn_free"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
+                        android:layout_height="26dp"
+                        android:layout_marginHorizontal="7dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edittext_round_id_password"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/radiobutton_fee"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:checked="true"
                         android:text="무료"
-                        android:textColor="#BCBCBC"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/radiobutton_fee_text"
                         android:textSize="10dp" />
 
-                    <Button
-                        android:id="@+id/btn_not_free"
+                    <RadioButton
+                        android:id="@+id/radio_btn_not_free"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_height="26dp"
                         android:layout_weight="1"
-                        android:background="@drawable/edittext_round_id_password"
+                        android:background="@drawable/radiobutton_fee"
+                        android:layout_marginLeft="6dp"
+                        android:button="@null"
+                        android:checked="false"
                         android:text="유료"
-                        android:textColor="#BCBCBC"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/radiobutton_fee_text"
                         android:textSize="10dp" />
-
-                </LinearLayout>
+                </RadioGroup>
 
                 <LinearLayout
                     android:id="@+id/ll_not_free"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/actv_minimum"
+                        <EditText
+                            android:id="@+id/et_fee"
                             android:layout_width="75dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginBottom="-3dp"
                             android:backgroundTint="#AAAAAA"
-                            android:drawablePadding="2dp"
-                            android:gravity="center_vertical"
                             android:imeOptions="actionDone"
-                            android:inputType="number"
-                            android:maxLength="7"
+                            android:inputType="numberDecimal"
+                            android:gravity="center"
                             android:singleLine="true"
+                            android:maxLength="7"
                             android:textCursorDrawable="@drawable/edittext_cursor_grey"
                             android:textSize="12dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
                             android:text="원" />
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/et_fee_description"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_height="80dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="6dp"
+                        android:layout_weight="3"
                         android:background="@drawable/background_round_upload_edittext"
-                        android:gravity="top"
                         android:hint="참가비에 포함된 내용을 적어주세요."
-                        android:maxLength="50"
-                        android:lineSpacingExtra="6dp"
-                        android:padding="16dp"
                         android:scrollbars="vertical"
+                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                        android:lineSpacingExtra="6dp"
+                        android:maxLength="50"
+                        android:paddingHorizontal="16dp"
                         android:textSize="12dp" />
                 </LinearLayout>
 

@@ -65,11 +65,11 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="#949494"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:gravity="center_horizontal|center_vertical"
                 android:paddingVertical="17dp"
-                android:text="정보 보호를 위해 아이디의 일부만 보여집니다." />
+                android:text="정보 보호를 위해 아이디의 일부만 보여집니다."
+                android:textColor="#949494" />
         </LinearLayout>
 
     </LinearLayout>

@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:timePickerStyle">@style/MyTimePicker</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -22,14 +23,47 @@
     </style>
 
     <!-- 라디오버튼 테마 -->
-    <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">#AAAAAA</item>
-        <item name="colorControlNormal">#DDDDDD</item>
+    <style name="RadioButtonAgreement" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#838383</item>
+        <item name="colorControlNormal">#DEDEDE</item>
     </style>
+
+    <style name="RadioButtonGender" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#515151</item>
+        <item name="colorControlNormal">#C1C1C1</item>
+    </style>
+
 
     <!-- 내비게이션 바-->
     <style name="FontCaption">
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Date Picker   -->
+    <style name="MyDatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <!-- 상단 색 변경 -->
+        <item name="colorAccent">@color/colorMainPurple</item>
+        <!-- dialog의 배경 변경 -->
+        <item name="background">@color/colorMainPurple</item>
+        <!-- 선택한 날짜를 표시할 색상 -->
+        <item name="colorControlActivated">@color/colorMainPurple</item>
+        <item name="colorControlHighlight">@color/colorMainPurple</item>
+        <!-- 취소/확인버튼 색상 -->
+        <item name="android:textColor">@color/colorMainGrey</item>
+    </style>
+
+    <!-- Time Picker-->
+    <style name="MyTimePicker" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+        <!-- 상단 색 변경 -->
+        <item name="colorAccent">@color/colorMainPurple</item>
+        <!-- dialog의 배경 변경 -->
+        <item name="background">@color/colorMainPurple</item>
+        <!-- 선택한 날짜를 표시할 색상 -->
+        <item name="colorControlActivated">@color/colorMainPurple</item>
+        <item name="colorControlHighlight">@color/colorMainPurple</item>
+        <!-- 취소/확인버튼 색상 -->
+        <item name="android:textColor">@color/colorMainGrey</item>
     </style>
 </resources>

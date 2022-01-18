@@ -22,6 +22,7 @@
                 android:layout_height="51dp"
                 android:layout_marginBottom="20dp"
                 android:src="@drawable/icon_add_photo" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,8 +33,8 @@
                     android:id="@+id/iv_change_photo"
                     android:layout_width="21dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/icon_camera"
                     android:layout_marginRight="22dp"
+                    android:src="@drawable/icon_camera"
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
@@ -57,36 +58,60 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:gravity="center"
                     android:layout_weight="2"
+                    android:gravity="center"
                     android:text="어떤 모임인가요?"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/et_sign_up_name"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.5"
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="24dp"
-                    android:backgroundTint="#AAAAAA"
-                    android:gravity="center_vertical"
-                    android:hint="대화하면서 즐거운 산행 함께 떠나요!"
-                    android:maxLength="21"
-                    android:singleLine="true"
-                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
-                    android:textSize="13dp" />
+                    android:layout_weight="1.5">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_title_length"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="(0/20)"
+                            android:layout_marginBottom="8dp"
+                            android:textSize="14dp"
+                            android:textColor="#D0D0D0" />
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/et_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#AAAAAA"
+                        android:gravity="center_vertical"
+                        android:hint="대화하면서 즐거운 산행 함께 떠나요!"
+                        android:maxLength="20"
+                        android:singleLine="true"
+                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                        android:textSize="12dp" />
+                </RelativeLayout>
+
 
                 <EditText
+                    android:id="@+id/et_description"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="6dp"
+                    android:layout_weight="5"
                     android:background="@drawable/background_round_upload_edittext"
                     android:gravity="top"
+                    android:textCursorDrawable="@drawable/edittext_cursor_grey"
                     android:hint="함께 이야기하고 싶은 내용이나 꼭 알려주고 싶은 내용을 입력해주세요"
                     android:lineSpacingExtra="6dp"
                     android:padding="16dp"

@@ -8,16 +8,16 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="120dp"
-        android:layout_height="135dp"
-        android:layout_marginRight="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="68dp"
+        android:layout_marginVertical="10dp"
         app:cardCornerRadius="8dp">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_home_viewpager">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/iv_home_picture"
@@ -65,6 +65,16 @@
                     android:textColor="#FFFFFF"
                     android:textSize="9dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_home_picture_shade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:background="#60000000"
+                android:visibility="invisible"
+                android:orientation="horizontal" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>

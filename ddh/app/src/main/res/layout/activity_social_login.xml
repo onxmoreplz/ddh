@@ -156,7 +156,6 @@
                         android:gravity="center"
                         android:text="이메일로 로그인"
                         android:fontFamily="@font/noto_sans_kr_regular"
-                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <View
@@ -174,7 +173,6 @@
                         android:gravity="center"
                         android:text="이메일로 가입하기"
                         android:fontFamily="@font/noto_sans_kr_regular"
-                        android:textStyle="bold"
                         android:textSize="12dp" />
                 </LinearLayout>
 

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".main.fragment.mypage.MypageEditFragment">
+    tools:context=".main.fragment.mypage.edit.MypageEditFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,24 +88,46 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/civ_edit_profile_picture_camera"
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:src="@drawable/camera"
                             app:civ_circle_background_color="#DDDDDD" />
                     </RelativeLayout>
 
                 </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/edt_user_name"
-                    android:layout_width="280dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="58dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginTop="13dp"
-                    android:background="@drawable/edittext_round_id_password"
-                    android:paddingHorizontal="16dp"
-                    android:text="함길동"
-                    android:textSize="14dp" />
+                    android:paddingHorizontal="38dp"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/edt_user_name"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/edittext_round_id_password"
+                        android:paddingHorizontal="16dp"
+                        android:text="함길동"
+                        android:textSize="14dp" />
+
+                    <Button
+                        android:id="@+id/btn_edit_nickname"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginVertical="4dp"
+                        android:layout_marginLeft="9dp"
+                        android:text="중복확인"
+                        android:background="@drawable/button_round_mypage_edit"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"/>
+                </LinearLayout>
+
+
             </LinearLayout>
         </LinearLayout>
 
@@ -163,6 +185,102 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center_vertical|left"
+                    android:text="휴대폰 번호"
+                    android:textColor="#252525"
+                    android:textSize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                    <EditText
+                        android:id="@+id/et_phone_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_mypage_edit_enabled"
+                        android:gravity="center"
+                        android:enabled="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="2dp"
+                        android:text="010"
+                        android:textSize="12dp" />
+
+                    <EditText
+                        android:id="@+id/et_phone_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_mypage_edit_enabled"
+                        android:gravity="center"
+                        android:enabled="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="2dp"
+                        android:singleLine="true"
+                        android:text="1234"
+                        android:textSize="12dp" />
+
+                    <EditText
+                        android:id="@+id/et_phone_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_mypage_edit_enabled"
+                        android:gravity="center"
+                        android:enabled="false"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="2dp"
+                        android:singleLine="true"
+                        android:text="5678"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical|left"
+                    android:text="생년월일"
+                    android:textColor="#252525"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/et_birth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/edittext_mypage_edit_enabled"
+                    android:gravity="center"
+                    android:enabled="false"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="2dp"
+                    android:text="1995 - 12 - 25"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical|left"
                     android:text="현재 비밀번호"
                     android:textColor="#252525"
                     android:textSize="15dp" />
@@ -203,120 +321,52 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:background="@drawable/edittext_round_id_password"
-                    android:hint="영문, 숫자 포함 8~20자리"
+                    android:hint="영문, 숫자 포함 7~14자리"
+                    android:textColorHint="#D3D3D3"
                     android:inputType="textPassword"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="2dp"
                     android:textSize="12dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_edit_password"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginBottom="22dp"
+                android:text="변경"
+                android:background="@drawable/button_round_mypage_edit"
+                android:textColor="@color/white"
+                android:textSize="10dp"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical|left"
-                    android:text="휴대폰 번호"
-                    android:textColor="#252525"
-                    android:textSize="15dp" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3">
-
-                    <EditText
-                        android:id="@+id/et_phone_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/edittext_round_id_password"
-                        android:gravity="center"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="2dp"
-                        android:text="010"
-                        android:textSize="12dp" />
-
-                    <EditText
-                        android:id="@+id/et_phone_2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/edittext_round_id_password"
-                        android:gravity="center"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="2dp"
-                        android:singleLine="true"
-                        android:text="1234"
-                        android:textSize="12dp" />
-
-                    <EditText
-                        android:id="@+id/et_phone_3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/edittext_round_id_password"
-                        android:gravity="center"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="2dp"
-                        android:singleLine="true"
-                        android:text="5678"
-                        android:textSize="12dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="25dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical|left"
-                    android:text="생년월일"
-                    android:textColor="#252525"
-                    android:textSize="15dp" />
-
-                <EditText
-                    android:id="@+id/et_birth"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/edittext_round_id_password"
-                    android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="2dp"
-                    android:text="1995 - 12 - 25"
-                    android:textSize="12dp" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:layout_marginTop="6dp"
             android:background="@color/white"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="vertical"
             android:paddingHorizontal="38dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|left"
+                android:text="신규 비밀번호"
+                android:textStyle="bold"
+                android:textColor="#252525"
+                android:textSize="17dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -331,12 +381,12 @@
                     android:layout_height="wrap_content"
                     android:gravity="right">
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:thumb="@drawable/custom_thumb"
-                    app:track="@drawable/custom_track" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:thumb="@drawable/custom_thumb"
+                        app:track="@drawable/custom_track" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -353,7 +403,7 @@
                     android:layout_height="wrap_content"
                     android:text="SMS 수신동의"
                     android:textColor="#252525"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"

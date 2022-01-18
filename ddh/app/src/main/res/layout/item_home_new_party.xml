@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="2dp"
     android:layout_marginHorizontal="6dp"
+    android:layout_marginTop="2dp"
     android:layout_marginBottom="4dp"
     android:elevation="20dp"
     android:orientation="vertical"
@@ -15,30 +15,74 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_new_party_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
-            android:hint="대화하면서 즐거운 산행 함께 떠나요!"
-            android:textColor="#313131"
-            android:textSize="16dp" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/iv_gender_1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/background_gender"
+                android:padding="2dp"
+                android:src="@drawable/icon_male" />
+
+            <ImageView
+                android:id="@+id/iv_gender_2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/background_gender"
+                android:padding="2dp"
+                android:src="@drawable/icon_female"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_new_party_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:hint="대화하면서 즐거운 산행 함께 떠나요!"
+                android:textColor="#313131"
+                android:textSize="13dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:hint="4/8명"
+                    android:textColor="#313131"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_new_party_participant"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginHorizontal="22dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="6dp"
             android:nestedScrollingEnabled="false" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -125,8 +169,10 @@
                     android:id="@+id/tv_new_party_likes_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_marginRight="12dp"
                     android:hint="24"
+                    android:layout_marginBottom="1dp"
                     android:singleLine="true"
                     android:textSize="12dp" />
 
@@ -134,7 +180,7 @@
                     android:layout_width="13dp"
                     android:layout_height="12dp"
                     android:layout_marginRight="6dp"
-                    android:src="@drawable/icon_reply" />
+                    android:src="@drawable/icon_reply_count" />
 
                 <TextView
                     android:id="@+id/tv_new_party_comment_count"
@@ -142,6 +188,7 @@
                     android:layout_height="wrap_content"
                     android:hint="24"
                     android:singleLine="true"
+                    android:layout_marginBottom="1dp"
                     android:textSize="12dp" />
             </LinearLayout>
 

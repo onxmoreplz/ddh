@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context=".upload.FirstUploadFragment">
+
+                    <LinearLayout
+                        android:id="@+id/ll_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="181dp"
+                        android:background="#ECECEC"
+                        android:gravity="center"
+                        android:orientation="vertical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="150dp"
+                        android:background="@drawable/background_round_upload"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2.5"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/tv_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="24dp"
+                                android:gravity="center"
+                                android:hint="대화하면서 즐거운 산행 함께 떠나요!"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/et_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="40dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_weight="5"
+                                android:background="@drawable/background_round_upload_edittext"
+                                android:editable="false"
+                                android:gravity="top"
+                                android:hint="함께 이야기하고 싶은 내용이나 꼭 알려주고 싶은 내용을 입력해주세요"
+                                android:lineSpacingExtra="6dp"
+                                android:padding="16dp"
+                                android:scrollbars="vertical"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="12dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="26dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_mountain_upload" />
+
+                            <TextView
+                                android:id="@+id/tv_mountain"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="산 이름"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_place_upload" />
+
+                            <TextView
+                                android:id="@+id/tv_place_to_meet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="사당역 4번 출구"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_gender" />
+
+                            <TextView
+                                android:id="@+id/tv_gender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="성별 상관없음"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_capacity" />
+
+                            <TextView
+                                android:id="@+id/tv_min_max"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="최소 3명 ~ 최대 8명"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_date_to_meet" />
+
+                            <TextView
+                                android:id="@+id/tv_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="12.31(금)"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_time_to_meet" />
+
+                            <TextView
+                                android:id="@+id/tv_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="오전 11:00"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/background_underline"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="16dp"
+                                android:src="@drawable/icon_fee_to_meet" />
+
+                            <TextView
+                                android:id="@+id/tv_fee"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:background="#00123456"
+                                android:backgroundTint="#AAAAAA"
+                                android:gravity="center_vertical"
+                                android:hint="30,000"
+                                android:imeOptions="actionDone"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:textColor="#232323"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/et_fee_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@drawable/background_round_upload_edittext"
+                            android:editable="false"
+                            android:hint="참가비에 포함된 내용을 적어주세요."
+                            android:lineSpacingExtra="6dp"
+                            android:maxLength="50"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="14dp"
+                            android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                            android:textSize="12dp"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="45dp"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/button_round_login"
+                            android:paddingHorizontal="8dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:src="@drawable/icon_warning" />
+
+                            <TextView
+                                android:id="@+id/some_id"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:paddingVertical="17dp"
+                                android:layout_marginLeft="4dp"
+                                android:singleLine="true"
+                                android:text="완료한 글은 수정이 불가능하므로 미리보기로 확인해주세요."
+                                android:textColor="#949494"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_upload"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginHorizontal="22dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/button_round_upload_party"
+                            android:enabled="true"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:gravity="center"
+                            android:text="완료하기"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

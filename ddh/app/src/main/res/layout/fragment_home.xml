@@ -18,13 +18,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll_header"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="56dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -33,9 +33,14 @@
 
 
                     <ImageView
-                        android:layout_width="75dp"
-                        android:layout_height="27dp"
+                        android:layout_width="24dp"
+                        android:layout_height="20dp"
                         android:layout_marginLeft="20dp"
+                        android:src="@drawable/logo_small" />
+
+                    <ImageView
+                        android:layout_width="66dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/logo_login" />
 
                     <LinearLayout
@@ -63,58 +68,79 @@
                 </LinearLayout>
 
                 <FrameLayout
-                    android:id="@+id/ll_search"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/edittext_round_main_red">
+                    android:layout_height="350dp">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/actv_recipe"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/transparent"
-                        android:completionThreshold="1"
-                        android:drawableRight="@drawable/background_logo_search"
-                        android:dropDownHeight="260dp"
-                        android:hint="새로운 모임을 찾아보세요"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:paddingRight="10dp"
-                        android:textCursorDrawable="@drawable/edittext_cursor_grey"
-                        android:textSize="16dp" />
+                        android:layout_height="281dp"
+                        android:background="@color/colorMainPurple" />
 
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_sans_kr_regular"
-                    android:text="이번주 인기 산"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginHorizontal="22dp"
-                    android:textColor="#313131"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <FrameLayout
-                    android:id="@+id/frameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="155dp"
-                    android:layout_marginLeft="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/vp_home_picture"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:overScrollMode="never" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/ll_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginHorizontal="23dp"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/edittext_round_main_red">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/actv_recipe"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:background="@android:color/transparent"
+                                android:completionThreshold="1"
+                                android:drawableRight="@drawable/drawable_search_in_edittext"
+                                android:dropDownHeight="260dp"
+                                android:hint="새로운 모임을 찾아보세요"
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:paddingRight="20dp"
+                                android:textCursorDrawable="@drawable/edittext_cursor_grey"
+                                android:textSize="14dp" />
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="235dp"
+                            android:layout_height="34dp"
+                            android:layout_marginTop="24dp"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginHorizontal="12dp"
+                                android:layout_marginBottom="6dp"
+                                android:background="#5523A7" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:text="이번주 인기 TOP 등산지"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textSize="22dp" />
+                        </FrameLayout>
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/vp_home_picture"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="8dp"
+                            android:overScrollMode="never" />
+                    </LinearLayout>
 
                 </FrameLayout>
 
@@ -142,9 +168,10 @@
                         android:paddingRight="3dp">
 
                         <TextView
+                            android:id="@+id/tv_more_new_party"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="7dp"
+                            android:layout_marginRight="3dp"
                             android:text="더보기"
                             android:textSize="13dp" />
 
@@ -162,8 +189,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-5dp"
-                    android:layout_marginHorizontal="18dp">
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="-5dp">
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_new_party"
@@ -176,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingRight="3dp">
@@ -196,9 +223,10 @@
                         android:gravity="right|center_vertical">
 
                         <TextView
+                            android:id="@+id/tv_more_deadline_party"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="7dp"
+                            android:layout_marginRight="3dp"
                             android:text="더보기"
                             android:textSize="13dp" />
 
@@ -216,8 +244,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-5dp"
-                    android:layout_marginHorizontal="18dp">
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="-5dp">
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_deadline_party"
@@ -230,7 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingRight="3dp">
@@ -250,9 +278,10 @@
                         android:gravity="right|center_vertical">
 
                         <TextView
+                            android:id="@+id/tv_more_popular_party"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="7dp"
+                            android:layout_marginRight="3dp"
                             android:text="더보기"
                             android:textSize="13dp" />
 
@@ -269,8 +298,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-5dp"
-                    android:layout_marginHorizontal="18dp">
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="-5dp">
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_hot_party"
@@ -291,14 +320,12 @@
             android:layout_gravity="bottom|right"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="19dp"
+            android:backgroundTint="@color/colorMainPurple"
+            app:fabCustomSize="54dp"
             android:src="@drawable/button_upload"
-            android:paddingRight="4dp"
-            android:paddingTop="2dp"
-            app:backgroundTint="@color/white"
             app:borderWidth="0dp"
-            app:maxImageSize="80dp"
-            app:fabSize="normal"
-            app:tint="@null" />
+            app:tint="@color/white" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
