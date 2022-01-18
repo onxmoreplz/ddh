@@ -1,4 +1,4 @@
-package com.example.ddh.main.fragment.mypage
+package com.example.ddh.main.fragment.mypage.edit
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -12,18 +12,13 @@ import com.example.ddh.R
 import com.example.ddh.base.UtilityBase
 import com.example.ddh.databinding.FragmentMypageEditBinding
 import com.example.ddh.main.MainActivity
-import com.example.ddh.main.fragment.mypage.edit.*
+import com.example.ddh.main.fragment.mypage.MypageFragment
 
 
 class MypageEditFragment : UtilityBase.BaseFragment<FragmentMypageEditBinding>(
     R.layout.fragment_mypage_edit
 ), View.OnClickListener {
 
-    private val editNameFragment by lazy { EditNameFragment() }
-    private val editEmailFragment by lazy { EditEmailFragment() }
-    private val editPassWordFragment by lazy { EditPasswordFragment() }
-    private val editPhoneFragment by lazy { EditPhoneFragment() }
-    private val editBirthFragment by lazy { EditBirthFragment() }
     private val mypageFragment by lazy { MypageFragment() }
 
     private val REQUEST_CODE_GALLARY = 0
