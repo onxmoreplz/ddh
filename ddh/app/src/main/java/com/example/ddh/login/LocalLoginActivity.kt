@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.ddh.App
 import com.example.ddh.R
-import com.example.ddh.data.repository.UserRepositoryImpl
+import com.example.ddh.data.repository.RepositoryImpl
 import com.example.ddh.databinding.ActivityLocalLoginBinding
 import com.example.ddh.login.find.FindIdActivity
 import com.example.ddh.login.find.FindPasswordActivity
@@ -22,8 +22,8 @@ class LocalLoginActivity : Activity() {
 
     private lateinit var databinding: ActivityLocalLoginBinding
 
-    private val userRepository = UserRepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
-    private val loginViewmodel = LoginViewModel(userRepository)
+    private val repository = RepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
+    private val loginViewmodel = LoginViewModel(repository)
 
     private var isEmailValid: Boolean = false
     private var isPasswordValid: Boolean = false
@@ -158,7 +158,7 @@ class LocalLoginActivity : Activity() {
     }
 
     private fun postUserLogin(hashMapLogin: HashMap<String, String>) {
-        userRepository.postLogin(
+        repository.postLogin(
             hashMapLogin,
             success = {
                 it.run {
@@ -198,7 +198,7 @@ class LocalLoginActivity : Activity() {
         ) {
             Log.e("postUserLogin", "Fail to Login : ${it.message}")
             if( it.message == "timeout") {
-                Toast.makeText(this@LocalLoginActivity, "인터넷 연결이 불안정합니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LocalLoginActivity, "인터넷 연결이 불안정합니다.\n다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -15,7 +15,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.ddh.R
-import com.example.ddh.data.repository.UserRepositoryImpl
+import com.example.ddh.data.repository.RepositoryImpl
 import com.example.ddh.databinding.ActivitySignUpEmailBinding
 import com.example.ddh.main.MainActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -28,8 +28,8 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private lateinit var dataBinding: ActivitySignUpEmailBinding
 
-    private val userRepository = UserRepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
-    private val signUpViewmodel = SignUpViewModel(userRepository)
+    private val repository = RepositoryImpl() // 의존성 주입을 위한 Repository 객체 생성
+    private val signUpViewmodel = SignUpViewModel(repository)
 
     private var userInfoHashMap = HashMap<String, String>()
 
@@ -200,7 +200,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpPhoneNumber.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+                dataBinding.etSignUpPhoneNumber.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
                 dataBinding.tvPhoneVaildCheck.text = "올바른 휴대폰 번호가 아닙니다"
                 dataBinding.tvPhoneVaildCheck.visibility = View.VISIBLE
             } else {
@@ -226,7 +226,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+                dataBinding.etSignUpName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
                 dataBinding.tvNameVaildCheck.text = "한글로만 또는 영어로만 입력 가능합니다"
                 dataBinding.tvNameVaildCheck.visibility = View.VISIBLE
             } else {
@@ -239,7 +239,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
     private fun checkFirstAndSecondPassword(s: CharSequence?): Boolean {
         if (dataBinding.etSignUpSecondPw.text.toString() != s?.toString()) {
-            dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+            dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
             dataBinding.tvSecondPasswordVaildCheck.text = "비밀번호가 일치하지 않습니다"
             dataBinding.tvSecondPasswordVaildCheck.visibility = View.VISIBLE
             return true
@@ -257,7 +257,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             return true
         } else {
             if (s!!.isNotEmpty()) {
-                dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+                dataBinding.etSignUpSecondPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
                 dataBinding.tvSecondPasswordVaildCheck.text = "비밀번호가 일치하지 않습니다"
                 dataBinding.tvSecondPasswordVaildCheck.visibility = View.VISIBLE
             } else {
@@ -277,12 +277,12 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
         val passwordRegEx = "^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[\$`~!@\$!%*#^?&\\\\(\\\\)\\-_=+]).{7,21}\$"
         if (s!!.isNotEmpty()) {
             if (s?.length!! < 8 || s?.length!! > 20) {
-                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
                 dataBinding.tvFirstPasswordVaildCheck.text = "비밀번호 길이는 8자리 이상 20자리 이하로 설정해주세요"
                 dataBinding.tvFirstPasswordVaildCheck.visibility = View.VISIBLE
                 return false
             } else if (!Pattern.matches(passwordRegEx, s)) {
-                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+                dataBinding.etSignUpFirstPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
                 dataBinding.tvFirstPasswordVaildCheck.text = "비밀번호는 숫자, 문자, 특수문자를 모두 1개 이상 포함해야합니다"
                 dataBinding.tvFirstPasswordVaildCheck.visibility = View.VISIBLE
                 return false
@@ -334,7 +334,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
             if (s!!.isNotEmpty()) {
                 dataBinding.tvEmailVaildCheck.text = "올바른 이메일 형식이 아닙니다"
                 dataBinding.tvEmailVaildCheck.visibility = View.VISIBLE
-                dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainRed)
+                dataBinding.etSignUpEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.colorMainPurple)
                 dataBinding.btnVerifyEmail.isEnabled = false
             } else {
                 dataBinding.tvEmailVaildCheck.visibility = View.GONE
@@ -352,7 +352,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
         dataBinding.btnVerifyEmail.setOnClickListener {
             val verifyEmailHashMap = HashMap<String, String>()
             Log.d("[GET] Verify Email", verifyEmailHashMap["email"].toString())
-            userRepository.getVerfyEmail(
+            repository.getVerfyEmail(
                 dataBinding.etSignUpEmail.text.toString(),
                 success = {
                     it.run {
@@ -398,7 +398,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
 
         // [중복확인] 닉네임
         dataBinding.btnCheckNickname.setOnClickListener {
-            userRepository.getNicknameCheck(
+            repository.getNicknameCheck(
                 dataBinding.etSignUpNickname.text.toString(),
                 success = {
                     it.run {
@@ -453,7 +453,7 @@ class SignUpEmailActivity : Activity(), CompoundButton.OnCheckedChangeListener, 
                         userInfoHashMap["name"] = dataBinding.etSignUpName.text.toString()
                         userInfoHashMap["nickName"] = dataBinding.etSignUpNickname.text.toString()
                         userInfoHashMap["tel"] = dataBinding.etSignUpPhoneNumber.text.toString()
-                        userRepository.postSignUp(
+                        repository.postSignUp(
                             userInfoHashMap,
                             success = {
                                 it.run {

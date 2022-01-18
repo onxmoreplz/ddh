@@ -4,10 +4,10 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ddh.data.dto.SignUpUserData
-import com.example.ddh.data.repository.UserRepositoryImpl
+import com.example.ddh.data.repository.RepositoryImpl
 
 class LoginViewModel(
-    private val userRepository: UserRepositoryImpl
+    private val repository: RepositoryImpl
 ) {
     private val hashMapLogin = HashMap<String, String>()
     private val _email = MutableLiveData<String>()
@@ -25,7 +25,7 @@ class LoginViewModel(
     fun getUserLoginInfo() {
         hashMapLogin["email"] = email.toString()!!
         hashMapLogin["password"] = password.toString()!!
-        userRepository.postLogin(
+        repository.postLogin(
             hashMapLogin,
             success = {
                 it.run {

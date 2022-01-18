@@ -1,10 +1,13 @@
 package com.example.ddh.data.repository
 
+import com.example.ddh.data.dto.PartyData
 import com.example.ddh.data.dto.SignUpUserData
+import com.example.ddh.data.remote.PartyRemoteDataSource
 import com.example.ddh.data.remote.UserRemoteDataSource
 
-class UserRepositoryImpl : UserRepository {
+class RepositoryImpl : Repository {
     private val userRemoteDataSource = UserRemoteDataSource()
+    private val partyRemoteDataSource = PartyRemoteDataSource()
 
     override fun getVerfyEmail(
         email: String,
@@ -17,8 +20,8 @@ class UserRepositoryImpl : UserRepository {
     override fun getNicknameCheck(
         nickname: String,
         success: (SignUpUserData.CheckNicknameResponse) -> Unit,
-        fail: (Throwable) -> Unit)
-    {
+        fail: (Throwable) -> Unit
+    ) {
         userRemoteDataSource.getCheckNickname(nickname, success, fail)
     }
 
@@ -36,6 +39,14 @@ class UserRepositoryImpl : UserRepository {
         fail: (Throwable) -> Unit
     ) {
         userRemoteDataSource.postUserLoginRemote(hashMapLogin, success, fail)
+    }
+
+    override fun postUploadParty(
+        hashMapParty: HashMap<String, Any>,
+        success: (PartyData.CreatePartyResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    ) {
+        partyRemoteDataSource.postUploadParty(hashMapParty, success, fail)
     }
 
 

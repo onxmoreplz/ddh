@@ -1,18 +1,11 @@
 package com.example.ddh.signup
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import androidx.core.content.ContextCompat
-import androidx.databinding.Bindable
-import androidx.databinding.Observable
 import androidx.databinding.ObservableField
-import com.example.ddh.R
-import com.example.ddh.data.repository.UserRepositoryImpl
-import java.util.regex.Pattern
+import com.example.ddh.data.repository.RepositoryImpl
 
 class SignUpViewModel(
-    private val userRepository: UserRepositoryImpl
+    private val repository: RepositoryImpl
 ) {
     val userInfoHashMap = HashMap<String, String>()
     var signUpResultUsername: String? = ""
@@ -35,7 +28,7 @@ class SignUpViewModel(
 
         if (userInfoHashMap.isEmpty()) {
         } else {
-            userRepository.postSignUp(
+            repository.postSignUp(
                 userInfoHashMap,
                 success = {
                     it.run {

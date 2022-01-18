@@ -1,8 +1,9 @@
 package com.example.ddh.data.repository
 
+import com.example.ddh.data.dto.PartyData
 import com.example.ddh.data.dto.SignUpUserData
 
-interface UserRepository {
+interface Repository {
 
     fun getVerfyEmail(
         email: String,
@@ -28,5 +29,9 @@ interface UserRepository {
         fail: (Throwable) -> Unit
     )
 
-
+    fun postUploadParty(
+        hashMapParty: HashMap<String, Any>,
+        success: (PartyData.CreatePartyResponse) -> Unit,
+        fail: (Throwable) -> Unit
+    )
 }

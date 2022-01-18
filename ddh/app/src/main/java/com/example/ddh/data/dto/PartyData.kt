@@ -1,12 +1,12 @@
 package com.example.ddh.data.dto
 
 class PartyData {
-    data class CreateParty(
+    data class CreatePartyResponse(
         val code: Int? = null,
         val data: Party? = null
     )
     data class Party(
-        val creator: Int? = null,
+        val OwnerId: Int? = null,
         val title: String? = null,
         val description: String? = null,
         val mountain: String? = null,
@@ -17,6 +17,7 @@ class PartyData {
         val maximum: Int? = null,
         val minimum: String? = null,
         val departureAt: String? = null,
-        val participants: ArrayList<SignUpUserData.User>? = null
+        val participants: ArrayList<SignUpUserData.User>? = null,
+        val thumbnail: String? = null
     )
 }
